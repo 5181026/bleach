@@ -10,7 +10,7 @@ end
 gem 'rails', '~> 5.1.7'
 # use bootstrap4  
 gem 'bootstrap', '~> 4.4.1'
-# use jquery 
+# use jquery3
 gem 'jquery-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
