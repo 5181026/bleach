@@ -1,0 +1,23 @@
+// サイドのナビメニューバーのスタイルシート 
+
+.nav-main{
+    padding:0;
+    height: 100%;
+    width: 20%;
+}
+
+nav > a {
+    height: 10%;
+    padding: 0.7rem 2.0rem;
+    width: 100%;
+}
+
+.nav-header{
+    margin-left: 5px;
+    height: 15%;
+}
+
+.nav-footer{
+    height: 45%;
+    text-align: center;
+}

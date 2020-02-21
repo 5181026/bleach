@@ -1,0 +1,26 @@
+<!-- サイドのナビメニュー -->
+<div class="nav-main">
+    <!-- メニューを縦に表示させ固定する　-->
+    <nav class="nav flex-column position-fixed h-100">
+        <!-- サイドのメニューのユーザ情報を表示する -->
+        <div class="nav-header">
+            <div class="d-flex">
+                <div><%= image_tag "https://picsum.photos/200/300" , class: "nav-image" %></div> <!-- 画像を表示する（javascript）-->
+                <div class="d-flex flex-column align-self-center"> <!-- 名前とIDを縦に表示する -->
+                    <div><b>Taro Yamada</b></div>
+                    <div class="text-center">ID:23740928</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ナビのメニューを表示 -->
+        <!-- 　urlをつける -->
+        <%= link_to "マイページ" , "#" %> 
+        <%= link_to "タイムライン" , "#" %>
+        <%= link_to "フレンド" , "#" %>
+        <%= link_to "グループ" , "#" %>
+         
+        <!-- ナビの最後の部分（何か情報を入れたい）  -->
+        <div class="nav-footer">サイト名など</div> 
+    </nav>
+</div>
