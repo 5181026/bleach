@@ -4,20 +4,32 @@
     padding:0;
     height: 100%;
     width: 20%;
+    text-decoration: none;
+    text-decoration-style: none;
 }
 
 nav > a {
     height: 10%;
-    padding: 0.7rem 2.0rem;
+    padding: 0.7rem 4.7rem 0.7rem 4.0rem;
     width: 100%;
+    background-color: rgb(216, 220, 224);
+}
+
+nav > a:hover{
+    background-color: rgb(198, 218, 238);
+    opacity: 0.6;
+    text-decoration: none;
+    font-style: normal;
 }
 
 .nav-header{
     margin-left: 5px;
     height: 15%;
+    background-color: rgb(216, 220, 224);
 }
 
 .nav-footer{
     height: 45%;
     text-align: center;
+    background-color: rgb(216, 220, 224);
 }
