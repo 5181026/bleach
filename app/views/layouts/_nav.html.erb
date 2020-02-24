@@ -7,7 +7,7 @@
             <div class="d-flex">
                 <div><%= image_tag "https://picsum.photos/200/300" , class: "nav-image" %></div> <!-- 画像を表示する（javascript）-->
                 <div class="d-flex flex-column align-self-center"> <!-- 名前とIDを縦に表示する -->
-                    <div><b>Taro Yamada</b></div>
+                    <div><b>Taro Yamada</b></div>                   <!-- 名前つける(javascript) --> 
                     <div class="text-center">ID:23740928</div>
                 </div>
             </div>
@@ -15,10 +15,11 @@
 
         <!-- ナビのメニューを表示 -->
         <!-- 　urlをつける -->
-        <%= link_to "マイページ" , "#" %> 
+        <%= link_to "マイページ" , "#"%>
         <%= link_to "タイムライン" , "#" %>
         <%= link_to "フレンド" , "#" %>
         <%= link_to "グループ" , "#" %>
+        <%= link_to "ログアウト" , "#" %>
          
         <!-- ナビの最後の部分（何か情報を入れたい）  -->
         <div class="nav-footer">サイト名など</div> 
