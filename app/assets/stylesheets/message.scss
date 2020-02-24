@@ -1,0 +1,19 @@
+// Place all the styles related to the message controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+base-chat-format{
+    padding: 0.8em;
+    margin: 0 0.6em;
+    border-radius: 50%;
+}
+
+.chat-format{
+    @extend base-chat-format;
+    background-color:lightblue;
+}
+
+.my-chat-format{
+    @extend base-chat-format;
+    background-color: lime;
+}
