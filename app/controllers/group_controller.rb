@@ -10,5 +10,4 @@ class GroupController < ApplicationController
     # グループ情報のコントローラ
     def group_info_view
     end
-
 end
