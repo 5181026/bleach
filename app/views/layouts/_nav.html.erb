@@ -5,9 +5,9 @@
         <!-- サイドのメニューのユーザ情報を表示する -->
         <div class="nav-header">
             <div class="d-flex">
-                <div><%= image_tag "https://picsum.photos/200/300" , class: "nav-image" %></div> <!-- 画像を表示する（javascript）-->
+                <div><%= image_tag "https://picsum.photos/200/300" , class: "nav-image" %></div> <!-- 画像を表示する（ruby）-->
                 <div class="d-flex flex-column align-self-center"> <!-- 名前とIDを縦に表示する -->
-                    <div><b>Taro Yamada</b></div>                   <!-- 名前つける(javascript) --> 
+                    <div><b>Taro Yamada</b></div>                   <!-- 名前つける(ruby) --> 
                     <div class="text-center">ID:23740928</div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
         <%= link_to "グループ" , "#" %>
         <%= link_to "ログアウト" , "#" %>
          
-        <!-- ナビの最後の部分（何か情報を入れたい）  -->
+        <!-- ナビの最後の部分（何かサイトの情報を入れたい）  -->
         <div class="nav-footer">サイト名など</div> 
     </nav>
 </div>
