@@ -8,7 +8,7 @@ class GroupController < ApplicationController
 
     # グループ一覧のコントローラ
     def group_view
-        @groupname = Constants::HELLO   #定数の書き方
+        @groupname = "groupname"
     end
 
     # グループ情報のコントローラ
