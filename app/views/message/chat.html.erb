@@ -1,8 +1,11 @@
+<!-- 相手の名前もしくはグループ名を表示 -->
 <header>
     <%= render ("message/message_header") %>
 </header>
 
+<!-- このページはリアルタイムで通信を行うのでjavascriptで処理を書く,画像は一度読み込めばいいのでメッセージのみ読み込む -->
 <div class="container">
+    <!-- 相手のメッセージと画像を表示 -->
     <div class="d-flex">
         <div class="offset-1">
             <%= image_tag "https://picsum.photos/200/300" , class: "chat-image"%>
@@ -10,6 +13,7 @@
         <div class="align-self-center chat-format">hello</div>
     </div>  
 
+    <!-- 自分のメッセージと画像を表示    -->
     <div class="d-flex flex-row-reverse col-11">
         <div>
             <%= image_tag "https://picsum.photos/200/300" , class: "chat-image"%>

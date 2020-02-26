@@ -2,17 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// 全てのチャットのスタイルシート
 base-chat-format{
     padding: 0.8em;
     margin: 0 0.6em;
     border-radius: 50%;
 }
 
+// 相手のメッセージのスタイルシート
 .chat-format{
     @extend base-chat-format;
     background-color:lightblue;
 }
 
+// 自分のメッセージのスタイルシート
 .my-chat-format{
     @extend base-chat-format;
     background-color: lime;

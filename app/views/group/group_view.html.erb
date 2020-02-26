@@ -8,7 +8,7 @@
             <!-- aタグの代わりにlink_toを使用する（後でユーザごとに別のurlにする）-->
             <%= link_to("#" , class: "col-md-6 col-10 text-center mt-5") do %>
                 <%= image_tag "https://picsum.photos/200/300" , class: "view-images" %>
-                <div class="image-name col-12 ml-md-2">GroupName</div>
+                <div class="image-name col-12 ml-md-2"><%= @groupname %></div>
             <% end %>
         </div> 
     <% end %>        
