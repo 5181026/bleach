@@ -12,6 +12,10 @@ gem 'rails', '~> 5.1.7'
 gem 'bootstrap', '~> 4.4.1'
 # use jquery3
 gem 'jquery-rails'
+# Use firebase
+gem "firebase"
+# Use firestore
+gem "google-cloud-firestore"
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
