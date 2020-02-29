@@ -2,11 +2,8 @@ require "google/cloud/firestore"
 
 # firestoreに認証するためのクラス
 class FirestoreConnection
-    def initialize(firestore_id)
-        @firestore_id = firestore_id
-    end
-
-    def firestore_get_connection
-        return Google::Cloud::Firestore.new project_id: @firestore_id
+    def self.get_connection
+        id = FirestoreConfig.new().get_firestore_id
+        return Google::Cloud::Firestore.new project_id: id
     end
 end
