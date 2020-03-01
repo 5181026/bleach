@@ -1,9 +1,11 @@
 # リポジトリのファクトリークラス
 class RepositoryFactory
+    attr_reader :repository     #repositoryのゲッター
+
     def initialize(col_name)
         firestore = FirestoreConnection::get_connection     #firestoreのコネクション
         @firestore_col = firestore.col col_name             #firestoreで使うcollectionを指定
-        @repository = new_repository()                      #factoryクラスを生成したときにインスタンスを生成する。
+        @repository = new_repository                      #factoryクラスを生成したときにインスタンスを生成する。
     end
 end
 
