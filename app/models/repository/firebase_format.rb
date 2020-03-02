@@ -2,7 +2,7 @@
 
 # 途中
 module FirebaseFormat
-    def get_document()
-        
+    def user_col
+        @firestore.col(FireConst::FIRE_COL_USERS)
     end
 end
