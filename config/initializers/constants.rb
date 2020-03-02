@@ -6,4 +6,5 @@
 # 定数を宣言するmodule
 module Constants
     SLASH = "/"
+    EQUAL = "="
 end
