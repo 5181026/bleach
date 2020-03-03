@@ -12,9 +12,11 @@ module FireConst
     FIRE_COL_MYGROUP = "mygroup"
     FIRE_COL_GROUP = "groups"
     FIRE_COL_TIMELINE = "timeline"
+    FIRE_COL_MEMBER = "members"
     FIRE_DOC_NAME = "name"
     FIRE_DOC_USER_ID = "userid"
     FIRE_DOC_USER_PASS = "password"
     FIRE_DOC_USER_FRIEND_ID = "friendid"
     FIRE_DOC_GROUP_ID = "groupid"
+    FIRE_DOC_GROUP_MEMBER_ID = "memberid"
 end
