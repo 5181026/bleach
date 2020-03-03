@@ -17,13 +17,13 @@ end
 # GroupRepositoryのインスタンスの生成をする
 class GroupRepositoryFactory < RepositoryFactory
     def new_repository
-        GroupRepositoryFactory.new(@firestore)
+        GroupRepository.new(@firestore)
     end
 end
 
 # MessageRepositoryのインスタンスを生成する
 class TimeLineRepositoryFactory < RepositoryFactory
     def new_repository
-        MessageRepositoryFactory.new(@firestore)
+        MessageRepository.new(@firestore)
     end
 end

@@ -33,9 +33,9 @@ class UserRepository
     end
 
     # 条件にid検索で一致したユーザをハッシュで返す
-    def get_find_user
+    def get_find_user(user_id)
         users = {}
-        query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , "test001")
+        query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
         
         query.get do |user|
             puts user.data
@@ -60,8 +60,8 @@ class UserRepository
     # IDが一致したユーザのフレンドを取得
     def get_find_friend(doc_id , friend_id)
         friends = {}
-        query = user_col().doc("0JUDhZLTs9dtgKcscDty").col(FireConst::FIRE_COL_FIRENDS)
-            .where(FireConst::FIRE_DOC_USER_FRIEND_ID , Constants::EQUAL , "test002")
+        query = user_col().doc(doc_id).col(FireConst::FIRE_COL_FIRENDS)
+            .where(FireConst::FIRE_DOC_USER_FRIEND_ID , Constants::EQUAL , friend_id)
 
         query.get do |friend|
             friends = friend.data
@@ -83,10 +83,10 @@ class UserRepository
     end
 
     # IDで一致したグループを取得
-    def get_find_mygroup
+    def get_find_mygroup(doc_id , group_id)
         mygroups = {}
-        query = user_col().doc("0JUDhZLTs9dtgKcscDty").col(FireConst::FIRE_COL_MYGROUP)
-            .where(FireConst::FIRE_DOC_GROUP_ID , Constants::EQUAL , "testgroup01")
+        query = user_col().doc(doc_id).col(FireConst::FIRE_COL_MYGROUP)
+            .where(FireConst::FIRE_DOC_GROUP_ID , Constants::EQUAL , group_id)
 
         query.get do |group|
             mygroups = group.data

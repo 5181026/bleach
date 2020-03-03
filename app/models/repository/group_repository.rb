@@ -1,30 +1,46 @@
 #firestoreのグループコレクションに対して読み込み書き込みをする
 class GroupRepository
+    include FirebaseFormat
+
     def initialize(firestore)
         @firestore = firestore
     end
 
     # 全てのグループを取得
     def get_all_group
-        friends = []
-        query = @firestore.col(FireConst::FIRE_COL_GROUP)
-        query.get do |friend|
-            friends << friend.data
+        groups = []
+        query = group_col()
+        query.get do |group|
+            groups << group.data
         end
 
-        return friends 
+        return groups
     end
 
-    #グループのIDで一致した条件のグループを取得
-    def get_find_friend
-        friends = {}
+    #グループのIDで一致した条件のグループをハッシュで返す
+    def get_find_group
+        groups = {}
 
-        query = @firestore.col(FireConst::FIRE_COL_MYGROUP)
-            .where(FireConst::FIRE_COL_GROUP_ID , Constants::EQUAL , "test002")
+        query = group_col().where(FireConst::FIRE_COL_GROUP_ID , Constants::EQUAL , "test001")
 
-        query.get do |friend|
-            friends = friend.data
+        query.get do |group|
+            groups = group.data
         end
 
-        return friends 
+        return groups 
+    end
+
+
+    # グループ内のメンバーを配列で返す
+    def get_all_group_user
+        users = []
+
+        query = group_col().doc("C0zpm3X9usKAywkTnCK0").col(FireConst::FIRE_DOC_GROUP_MEMBER_ID)
+
+        query.get do |user|
+            users << user.data
+        end
+
+        return users
+    end
 end

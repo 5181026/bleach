@@ -5,4 +5,8 @@ module FirebaseFormat
     def user_col
         @firestore.col(FireConst::FIRE_COL_USERS)
     end
+
+    def group_col
+        @firestore.col(FireConst::FIRE_COL_GROUP)
+    end
 end
