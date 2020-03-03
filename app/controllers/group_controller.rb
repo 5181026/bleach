@@ -8,7 +8,8 @@ class GroupController < ApplicationController
 
     # グループ一覧のコントローラ
     def group_view
-        @groupname = "groupname"
+        use_case = UserUseCase.new
+        @groups = use_case.get_group
     end
 
     # グループ情報のコントローラ
