@@ -12,6 +12,8 @@ module Bleach
     config.load_defaults 5.1
     config.autoload_paths += %W(#{config.root}/app/models/firestore)
     config.autoload_paths += %W(#{config.root}/app/models/repository)
+    config.autoload_paths += %W(#{config.root}/app/models/usecase)
+    config.autoload_paths += %W(#{config.root}/app/models/data)
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
