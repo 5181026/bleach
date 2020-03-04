@@ -18,10 +18,10 @@ class GroupRepository
     end
 
     #グループのIDで一致した条件のグループをハッシュで返す
-    def get_find_group
+    def get_find_group(group_id)
         groups = {}
 
-        query = group_col().where(FireConst::FIRE_COL_GROUP_ID , Constants::EQUAL , "test001")
+        query = group_col().where(FireConst::FIRE_DOC_GROUP_ID , Constants::EQUAL , group_id)
 
         query.get do |group|
             groups = group.data
