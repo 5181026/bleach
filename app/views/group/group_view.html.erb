@@ -2,6 +2,10 @@
 
 
 <div class="row">
+    <div class ="container text-right mt-3">
+        <%= link_to("グループを探す" , "/group_search" , class: "btn btn-outline-primary" , type: "button")%>
+        <%= link_to("グループを作る" , "#" , class: "btn btn-outline-primary" , type: "button")%>
+    </div>
 <!-- グループ一覧の画像を表示 -->
     <% for group in @groups do %>      <!-- データベースから送られてきた分だけループする -->
         <div class="col-md-6 col-10 text-center mt-5">

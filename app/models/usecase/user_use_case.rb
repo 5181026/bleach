@@ -14,14 +14,4 @@ class UserUseCase
             create_day = ""
              )
     end
-
-    def get_group
-        # user_repo = UserRepositoryFactory.new.repository
-        # return user_repo.get_all_mygroup
-        
-        #テスト用
-        auth()
-        group_repo = GroupRepositoryFactory.new.repository
-        return @user.mygroups
-    end 
 end
