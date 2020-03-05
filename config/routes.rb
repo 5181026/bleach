@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   get "/group_search" , to: "group#group_search"
   get "/message" , to: "message#chat"
 
-  post "/group_search" , to: "group#group_search"
+  post "/group_view" , to: "group#group_view"
 end

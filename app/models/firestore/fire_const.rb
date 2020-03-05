@@ -18,5 +18,6 @@ module FireConst
     FIRE_DOC_USER_PASS = "password"
     FIRE_DOC_USER_FRIEND_ID = "friendid"
     FIRE_DOC_GROUP_ID = "groupid"
+    FIRE_DOC_GROUP_NAME = "groupname"
     FIRE_DOC_GROUP_MEMBER_ID = "memberid"
 end
