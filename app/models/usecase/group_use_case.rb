@@ -1,22 +1,31 @@
 class GroupUseCase
+    @@group_repo = GroupRepositoryFactory.new.repository
 
-    def get_group
-        # user_repo = UserRepositoryFactory.new.repository
-        # return user_repo.get_all_mygroup
-        
-        #テスト用
+    def get_all_mygroup
+        #############テスト用##############
         @user = UserUseCase.new.auth()
-        group_repo = GroupRepositoryFactory.new.repository
-        # return @user.mygroups
-        
+        ###################################
+        #グループリポジトリのインスタンスを生成
+
         #ユーザからgroupidを調べて取得する。
         mygroup = @user.mygroups.map do |s| 
-            group_repo.get_find_group(s[:groupid]) 
+            @@group_repo.get_find_group_id(s[:groupid]) 
         end
-
         mygroup.delete_if { |i| i == {} }   #空のハッシュを削除する(本来は必要ない)
-
-        puts mygroup
         return mygroup
     end 
+
+    #グループIDで検索し配列で返す
+    def get_find_id_group(group_id)
+        mygroup = []
+        mygroup << @@group_repo.get_find_group_id(group_id) 
+        mygroup.delete_if { |i| i == {} }   #空のハッシュを削除する(本来は必要ない)
+    end
+
+    #グループ名で検索し配列で返す
+    def get_find_name_group(group_name)
+        mygroup = []
+        mygroup << @@group_repo.get_find_group_name(group_name)
+        mygroup.delete_if { |i| i == {} }   #空のハッシュを削除する(本来は必要ない)
+    end
 end

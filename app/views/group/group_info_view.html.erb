@@ -1,0 +1,26 @@
+<% provide( :use_nav , "true") %> 
+
+<!-- グループの情報を表示する -->
+<div class="container text-center m-5 position-fixed">
+    <div class="d-flex col-12 m-5">
+        <%= image_tag "https://picsum.photos/200/300" , class: "group-info-image mr-5" %>
+        <div class="d-flex flex-column h4 pl-5">
+            <div class="group-info-text d-flex">
+                <div class="text-right">グループID:</div>
+                <div class="ml-3"><%= @groups[:groupid] %></div>
+            </div>
+            <div class="group-info-text d-flex">
+                <div>グループ名:</div>
+                <div class="ml-3"><%= @groups[:groupname] %></div>
+            </div>
+            <div class="group-info-text d-flex">
+                <div class>管理者:　　</div>
+                <div class="ml-3">管理者名</div>
+            </div>
+            <div class="group-info-text d-flex">
+                <div>メンバー:　</div>
+                <div class="ml-3">グループの人数</div>
+            </div>
+        </div>
+    </div>
+</div>
