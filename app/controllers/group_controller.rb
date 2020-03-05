@@ -2,12 +2,16 @@
 
 class GroupController < ApplicationController
     @@use_case = GroupUseCase.new
+    
     # グループ登録のコントローラ
     def group_add
     end
 
     # グループ一覧のコントローラ
     def group_view
+        #############テスト用##############
+        session[:user] = UserUseCase.new.auth()
+        ###################################
         @groups = []
         # 検索した値をビューに渡す
         if params[:group_id].present?
@@ -22,9 +26,8 @@ class GroupController < ApplicationController
 
     # グループ情報のコントローラ
     def group_info_view
-        puts "lkasdj;flkasjd;flaj"
-        puts params
         @groups = @@use_case.get_find_id_group(params[:group_id])[Constants::ZERO]
+        @user_id = session[:user]["#{Constants::USER_ID}"]
     end
 
     #グループ検索のコントローラ

@@ -7,5 +7,6 @@
 module Constants
     SLASH = "/"
     EQUAL = "="
+    USER_ID = "user_id"
     ZERO = 0
 end
