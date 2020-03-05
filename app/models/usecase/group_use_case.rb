@@ -5,7 +5,6 @@ class GroupUseCase
         #############テスト用##############
         @user = UserUseCase.new.auth()
         ###################################
-        #グループリポジトリのインスタンスを生成
 
         #ユーザからgroupidを調べて取得する。
         mygroup = @user.mygroups.map do |s| 

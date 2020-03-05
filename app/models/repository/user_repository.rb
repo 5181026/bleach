@@ -10,8 +10,8 @@ class UserRepository
     def get_all_user
         users = []
         query = user_col()
-        query.get do |user|
-            users << user.data
+        query.get do |u|
+            users << u.data
         end
 
         return users
@@ -24,9 +24,9 @@ class UserRepository
         query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
             .where(FireConst::FIRE_DOC_USER_PASS , Constants::EQUAL , user_pass)
 
-        query.get do |user|
-            users = user.data
-            doc_id = user.document_id
+        query.get do |u|
+            users = u.data
+            doc_id = u.document_id
         end
 
         return users , doc_id
@@ -37,8 +37,8 @@ class UserRepository
         users = {}
         query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
         
-        query.get do |user|
-            users = user.data
+        query.get do |u|
+            users = u.data
         end
 
         return users
@@ -49,8 +49,8 @@ class UserRepository
         friends = []
         query = user_col().doc(doc_id).col(FireConst::FIRE_COL_FIRENDS)
         
-        query.get do |friend|
-            friends << friend.data
+        query.get do |f|
+            friends << f.data
         end
 
         return friends
@@ -62,8 +62,8 @@ class UserRepository
         query = user_col().doc(doc_id).col(FireConst::FIRE_COL_FIRENDS)
             .where(FireConst::FIRE_DOC_USER_FRIEND_ID , Constants::EQUAL , friend_id)
 
-        query.get do |friend|
-            friends = friend.data
+        query.get do |f|
+            friends = f.data
         end
 
         return friends
@@ -74,8 +74,8 @@ class UserRepository
         mygroups = []
         query = user_col().doc(doc_id).col(FireConst::FIRE_COL_MYGROUP)
         
-        query.get do |group|
-            mygroups << group.data
+        query.get do |g|
+            mygroups << g.data
         end
 
         return mygroups
@@ -87,8 +87,8 @@ class UserRepository
         query = user_col().doc(doc_id).col(FireConst::FIRE_COL_MYGROUP)
             .where(FireConst::FIRE_DOC_GROUP_ID , Constants::EQUAL , group_id)
 
-        query.get do |group|
-            mygroups = group.data
+        query.get do |g|
+            mygroups = g.data
         end
 
         return mygroups
