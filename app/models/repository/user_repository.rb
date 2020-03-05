@@ -38,7 +38,6 @@ class UserRepository
         query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
         
         query.get do |user|
-            puts user.data
             users = user.data
         end
 

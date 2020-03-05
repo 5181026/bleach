@@ -7,4 +7,5 @@
 module Constants
     SLASH = "/"
     EQUAL = "="
+    ZERO = 0
 end
