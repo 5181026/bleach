@@ -17,10 +17,13 @@ class GroupController < ApplicationController
         else
             @groups = @@use_case.get_all_mygroup()
         end
+        puts @groups
     end
 
     # グループ情報のコントローラ
     def group_info_view
+        puts "lkasdj;flkasjd;flaj"
+        puts params
         @groups = @@use_case.get_find_id_group(params[:group_id])[Constants::ZERO]
     end
 

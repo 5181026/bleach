@@ -9,7 +9,7 @@
     <% for group in @groups do %>      <!-- データベースから送られてきた分だけループする -->
         <div class="col-md-6 col-10 text-center mt-5">
             <!-- aタグの代わりにlink_toを使用する（後でユーザごとに別のurlにする）-->
-            <%= link_to(group_info_path , group_id: group[:groupid] , class: "col-md-6 col-10 text-center mt-5") do %>
+            <%= link_to(group_info_path(group_id: group[:groupid]), class: "col-md-6 col-10 text-center mt-5") do %>
                 <%= image_tag "https://picsum.photos/200/300" , class: "view-images" %>
                 <div class="image-name col-12 ml-md-2"><%= group[:groupname] %></div>
             <% end %>
