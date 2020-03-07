@@ -18,15 +18,16 @@ class GroupController < ApplicationController
             @groups = @@use_case.get_find_id_group(params[:group_id])
         elsif params[:group_name].present?
             @groups = @@use_case.get_find_name_group(params[:group_name])
-        else
+        end
+
+        if @groups == []
             @groups = @@use_case.get_all_mygroup()
         end
-        puts @groups
     end
 
     # グループ情報のコントローラ
     def group_info_view
-        @groups = @@use_case.get_find_id_group(params[:group_id])[Constants::ZERO]
+        @group = @@use_case.get_find_id_group(params[:group_id])[Constants::ZERO]
         @user_id = session[:user]["#{Constants::USER_ID}"]
     end
 

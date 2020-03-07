@@ -9,12 +9,12 @@
         <div class="d-flex flex-column h4 pl-5">
             <div class="group-info-text d-flex">
                 <div class="text-right">グループID:</div>
-                <div class="ml-3"><%= @groups[:groupid] %></div>
+                <div class="ml-3"><%= @group[:groupid] %></div>
             </div>
 
             <div class="group-info-text d-flex">
                 <div>グループ名:</div>
-                <div class="ml-3"><%= @groups[:groupname] %></div>
+                <div class="ml-3"><%= @group[:groupname] %></div>
             </div>
 
             <div class="group-info-text d-flex">
@@ -29,10 +29,10 @@
             
             <div>
                 <!-- 権限があるユーザにだけ押せるようにする -->
-                <% if @groups[:createuserid] == @user_id%>
+                <% if @group[:createuserid] == @user_id%>
                     <%= link_to "編集する" , "#" , class: "btn btn-primary btn-lg pr-5 pl-5"%>
                 <% end %>
-                <%= link_to "戻 る" , group_view_path(group_id: @groups[:groupid]) , class: "btn btn-secondary btn-lg pr-5 pl-5"%>
+                <%= link_to "戻 る" , 'javascript:history.back()' , class: "btn btn-secondary btn-lg pr-5 pl-5"%>
             </div>
         </div>
     </div>
