@@ -9,25 +9,26 @@
         <div class="d-flex flex-column h4 pl-5">
             <div class="group-info-text d-flex">
                 <div class="text-right">ユーザID:</div>
-                <div class="ml-3"><%= @friend[:userid] %></div>
+                <div class="ml-3"><%= session[:user].user_id %></div>
             </div>
 
             <div class="group-info-text d-flex">
                 <div>ユーザ名:</div>
-                <div class="ml-3"><%= @friend[:name] %></div>
+                <div class="ml-3"><%= session[:user].user_name%></div>
             </div>
 
             <div class="group-info-text d-flex">
-                <div class>メール</div>
+                <div class>　メール:</div>
                 <div class="ml-3">メールアドレス</div>
             </div>
 
             <div class="group-info-text d-flex">
-                <div>年齢</div>
+                <div>　　年齢:</div>
                 <div class="ml-3">年齢</div>
             </div>
             
             <div>
+                <%= link_to "編集する" , "#" , class: "btn btn-primary btn-lg pr-5 pl-5"%>
                 <%= link_to "戻 る" , 'javascript:history.back()' , class: "btn btn-secondary btn-lg pr-5 pl-5"%>
             </div>
         </div>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get "/mypage" , to: "user#mypage_view"
   get "/friend_view" , to: "friend#friend_view"
   get "/friend_info_view" , to: "friend#friend_info_view"
   get "/friend_search" , to: "friend#friend_search"
