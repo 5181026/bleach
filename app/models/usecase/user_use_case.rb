@@ -16,7 +16,23 @@ class UserUseCase
              )
     end
 
-    def get_all_friend(doc_id)
-        return @@user_repo.get_all_friends(doc_id)
+    def get_friends(user_friends)
+        friend = user_friends.map do |s|
+            @@user_repo.get_find_user_id(s[:friendid])
+        end
+
+        return friend
+    end
+
+    def id_find_user(user_id)
+        users = []
+        users << @@user_repo.get_find_user_id(user_id) 
+        users.delete_if { |i| i == {} || i == "" }   #空のハッシュを削除する(本来は必要ない)
+    end
+
+    def find_name_user(doc_id , friend_name)
+        users = []
+        users << @@user_repo.get_find_user_name(doc_id , friend_name)
+        users.delete_if { |i| i == {} || i == "" }
     end
 end

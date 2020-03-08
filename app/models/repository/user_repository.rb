@@ -33,10 +33,21 @@ class UserRepository
     end
 
     # 条件にid検索で一致したユーザをハッシュで返す
-    def get_find_user(user_id)
+    def get_find_user_id(user_id)
         users = {}
         query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
         
+        query.get do |u|
+            users = u.data
+        end
+
+        return users
+    end
+
+    def get_find_user_name(user_name)
+        users = {}
+        query = user_col().where(FireConst::FIRE_DOC_USER_NAME , Constants::EQUAL , user_name)
+
         query.get do |u|
             users = u.data
         end
@@ -57,11 +68,24 @@ class UserRepository
     end
 
     # IDが一致したユーザのフレンドを取得
-    def get_find_friend(doc_id , friend_id)
+    def get_id_find_friend(doc_id , friend_id)
         friends = {}
         query = user_col().doc(doc_id).col(FireConst::FIRE_COL_FIRENDS)
             .where(FireConst::FIRE_DOC_USER_FRIEND_ID , Constants::EQUAL , friend_id)
 
+        query.get do |f|
+            friends = f.data
+        end
+
+        return friends
+    end
+
+    # フレンドを名前検索で一致したものをハッシュで返す
+    def get_name_find_friend(doc_id , friend_name)
+        friends = {}
+        query = user_col().doc(doc_id).col(FireConst::FIRE_COL_FIRENDS)
+            .where(FireConst::FIRE_DOC_USER_FRIEND_NAME , Constants::EQUAL , friend_name)
+        
         query.get do |f|
             friends = f.data
         end
