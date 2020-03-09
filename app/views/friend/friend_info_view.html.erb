@@ -1,0 +1,35 @@
+<% provide( :use_nav , "true") %> 
+
+<!-- ユーザの情報を表示する -->
+<div class="container text-center m-5 position-fixed">
+    <div class="d-flex col-12 m-5">
+
+        <%= image_tag "https://picsum.photos/200/300" , class: "group-info-image mr-5 rounded" %>
+
+        <div class="d-flex flex-column h4 pl-5">
+            <div class="group-info-text d-flex">
+                <div class="text-right">ユーザID:</div>
+                <div class="ml-3"><%= @friend[:userid] %></div>
+            </div>
+
+            <div class="group-info-text d-flex">
+                <div>ユーザ名:</div>
+                <div class="ml-3"><%= @friend[:name] %></div>
+            </div>
+
+            <div class="group-info-text d-flex">
+                <div class>メール</div>
+                <div class="ml-3">メールアドレス</div>
+            </div>
+
+            <div class="group-info-text d-flex">
+                <div>年齢</div>
+                <div class="ml-3">年齢</div>
+            </div>
+            
+            <div>
+                <%= link_to "戻 る" , 'javascript:history.back()' , class: "btn btn-secondary btn-lg pr-5 pl-5"%>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,6 +4,7 @@
 class User
     attr_accessor :doc_id , :user_name , :user_id , :user_age , :friends , :mygroups , :create_day
     def initialize(doc_id , user_name , user_id , user_age , friends , mygroups , create_day)
+        @doc_id = doc_id
         @user_name = user_name
         @user_id = user_id
         @user_age = user_age

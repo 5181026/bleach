@@ -12,6 +12,11 @@ class UserController < ApplicationController
     end
 
     #プロフィール表示のコントローラ
-    def user_view 
+    def mypage_view 
+        #############テスト用##############
+        session[:user] = UserUseCase.new.auth()
+        ###################################
+
+        puts session[:user].user_name
     end
 end
