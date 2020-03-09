@@ -1,7 +1,7 @@
 # コントローラで使用するクラス
 class UserUseCase
     @@user_repo = UserRepositoryFactory.new().repository
-
+    include CreateDatetime
     #ログインの認証をする(テスト)
     def auth (user_id = "test001" , user_pass = "test")#テスト用ユーザ
         user_data , auth_doc_id = @@user_repo.get_auth_user(user_id , user_pass) 
@@ -12,7 +12,7 @@ class UserUseCase
             user_age = "",
             friends = @@user_repo.get_all_friends(auth_doc_id),
             mygroups = @@user_repo.get_all_mygroup(auth_doc_id),
-            create_day = ""
+            create_datetime = CreateDatetime::get_datetime_string
              )
     end
 
