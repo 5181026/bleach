@@ -17,6 +17,6 @@ class UserController < ApplicationController
         session[:user] = UserUseCase.new.auth()
         ###################################
 
-        puts session[:user].user_name
+        puts session[:user].friends[1][:messageid]
     end
 end

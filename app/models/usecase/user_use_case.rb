@@ -12,7 +12,7 @@ class UserUseCase
             user_age = "",
             friends = @@user_repo.get_all_friends(auth_doc_id),
             mygroups = @@user_repo.get_all_mygroup(auth_doc_id),
-            create_datetime = CreateDatetime::get_datetime_string
+            create_datetime = CreateDatetime::get_datetime_string,
              )
     end
 
@@ -30,9 +30,9 @@ class UserUseCase
         users.delete_if { |i| i == {} || i == "" }   #空のハッシュを削除する(本来は必要ない)
     end
 
-    def find_name_user(doc_id , friend_name)
+    def name_find_user(friend_name)
         users = []
-        users << @@user_repo.get_find_user_name(doc_id , friend_name)
+        users << @@user_repo.get_find_user_name(friend_name)
         users.delete_if { |i| i == {} || i == "" }
     end
 end

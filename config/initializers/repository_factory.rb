@@ -21,6 +21,12 @@ class GroupRepositoryFactory < RepositoryFactory
     end
 end
 
+class MessageRepositoryFactory < RepositoryFactory
+    def new_repository
+        MessageRepository.new(@firestore)
+    end
+end
+
 # MessageRepositoryのインスタンスを生成する
 class TimeLineRepositoryFactory < RepositoryFactory
     def new_repository
