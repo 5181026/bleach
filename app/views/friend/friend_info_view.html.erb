@@ -1,7 +1,7 @@
 <% provide( :use_nav , "true") %> 
 
 <!-- ユーザの情報を表示する -->
-<div class="container text-center m-5 position-fixed">
+<div class="text-center m-5 position-fixed">
     <div class="d-flex col-12 m-5">
 
         <%= image_tag "https://picsum.photos/200/300" , class: "group-info-image mr-5 rounded" %>
@@ -28,6 +28,7 @@
             </div>
             
             <div>
+                <%= link_to "チャット" , message_path , class: "btn btn-success btn-lg pr-5 pl-5"%>
                 <%= link_to "戻 る" , 'javascript:history.back()' , class: "btn btn-secondary btn-lg pr-5 pl-5"%>
             </div>
         </div>

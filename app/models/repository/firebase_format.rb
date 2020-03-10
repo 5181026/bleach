@@ -9,4 +9,8 @@ module FirebaseFormat
     def group_col
         @firestore.col(FireConst::FIRE_COL_GROUP)
     end
+
+    def message_col
+        @firestore.col(FireConst::FIRE_COL_MESSAGE)
+    end
 end
