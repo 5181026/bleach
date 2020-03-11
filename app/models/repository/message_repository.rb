@@ -13,7 +13,7 @@ class MessageRepository
 
         #message_idが一致したコレクションのドキュメントIDを取得する
         query.get do |m|
-            doc_id = u.document_id
+            doc_id = m.document_id
         end
 
         query = message_col.doc(doc_id).col(FireConst::FIRE_DOC_MESSAGE_CONTENT)
