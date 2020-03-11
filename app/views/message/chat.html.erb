@@ -5,19 +5,29 @@
 
 <!-- このページはリアルタイムで通信を行うのでjavascriptで処理を書く,画像は一度読み込めばいいのでメッセージのみ読み込む -->
 <div class="container">
-    <!-- 相手のメッセージと画像を表示 -->
-    <div class="d-flex">
-        <div class="offset-1">
-            <%= image_tag "https://picsum.photos/200/300" , class: "chat-image"%>
-        </div>
-        <div class="align-self-center chat-format">hello</div>
-    </div>  
-
-    <!-- 自分のメッセージと画像を表示    -->
-    <div class="d-flex flex-row-reverse col-11">
-        <div>
-            <%= image_tag "https://picsum.photos/200/300" , class: "chat-image"%>
-        </div>
-        <div class="align-self-center my-chat-format">hello</div>
-    </div>  
+    <% @msg.map do |m| %>
+        <!-- 相手のメッセージと画像を表示 -->
+        <% unless m[:postid] == session[:user]["user_id"] %>
+                <div class="d-flex mt-5">
+                    <div class="offset-1">
+                        <%= image_tag "https://picsum.photos/200/300" , class: "chat-image"%>
+                    </div>
+                    <div class="align-self-center chat-format"><%= m[:text]%></div>
+                </div>  
+        <% else %>    
+            <!-- 自分のメッセージと画像を表示    -->
+            <div class="d-flex flex-row-reverse col-11 mt-5">
+                <div>
+                    <%= image_tag "https://picsum.photos/200/300" , class: "chat-image"%>
+                </div>
+                <div class="align-self-center my-chat-format"><%= m[:text] %></div>
+            </div>  
+        <% end %>
+    <% end %>
+        <%= form_with url: friend_view_path , local: true , class: "mt-5 msg-form" do |form| %>
+            <div class="form-group d-flex">
+                <%= form.text_area :msg_text , class: "form-control col-8 pr-5" , id: "exampleFormControlTextarea1" , rows: "3" , size: "73x3" , placeholder: "ここにメッセージを入力してください" %>
+                <div class="align-self-center ml-5 col-3"><button type="button" class="btn btn-primary btn-lg pr-5 pl-5">送信する</button></div>
+            </div>
+        <% end %>
 </div>

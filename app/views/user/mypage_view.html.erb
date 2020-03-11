@@ -4,25 +4,25 @@
 <div class="text-center m-5 position-fixed">
     <div class="d-flex col-12 m-5">
 
-        <%= image_tag "https://picsum.photos/200/300" , class: "group-info-image mr-5 rounded" %>
+        <%= image_tag "https://picsum.photos/200/300" , class: "info-image mr-5 rounded" %>
 
         <div class="d-flex flex-column h4 pl-5">
-            <div class="group-info-text d-flex">
+            <div class="info-text d-flex">
                 <div class="text-right">ユーザID:</div>
                 <div class="ml-3"><%= session[:user].user_id %></div>
             </div>
 
-            <div class="group-info-text d-flex">
+            <div class="info-text d-flex">
                 <div>ユーザ名:</div>
                 <div class="ml-3"><%= session[:user].user_name%></div>
             </div>
 
-            <div class="group-info-text d-flex">
+            <div class="info-text d-flex">
                 <div class>　メール:</div>
                 <div class="ml-3">メールアドレス</div>
             </div>
 
-            <div class="group-info-text d-flex">
+            <div class="info-text d-flex">
                 <div>　　年齢:</div>
                 <div class="ml-3">年齢</div>
             </div>

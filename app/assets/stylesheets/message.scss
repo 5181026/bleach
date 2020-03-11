@@ -20,3 +20,12 @@ base-chat-format{
     @extend base-chat-format;
     background-color: lime;
 }
+
+.msg-form{
+    position: fixed;
+    bottom: 0; 
+    background-color: rgb(216, 220, 224);
+    padding-left: 5%;
+    padding-top: 1%;
+}
+
