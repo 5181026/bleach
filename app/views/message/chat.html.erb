@@ -6,25 +6,6 @@
 <!-- このページはリアルタイムで通信を行うのでjavascriptで処理を書く,画像は一度読み込めばいいのでメッセージのみ読み込む -->
 <div class="container" id="chats">
     <div id="chat-view">
-    <!--    <% @msg.map do |m| %>
-            相手のメッセージと画像を表示
-            <% unless m[:postid] == session[:user]["user_id"] %>
-                <div class="d-flex mt-5">
-                    <div class="offset-1">
-                        <%= image_tag "https://picsum.photos/200/300" , class: "chat-image"%>
-                    </div>
-                    <div class="align-self-center chat-format"><%= m[:text]%></div>
-                </div>  
-            <% else %>    
-                自分のメッセージと画像を表示 
-                <div class="d-flex flex-row-reverse col-11 mt-5">
-                    <div>
-                        <%= image_tag "https://picsum.photos/200/300" , class: "chat-image"%>
-                    </div>
-                    <div class="align-self-center my-chat-format"><%= m[:text] %></div>
-                </div>  
-            <% end %>
-        <% end %>  -->
     </div>
     <form name="form" class="mt-5 msg-form">
         <div class="form-group d-flex">
@@ -34,6 +15,15 @@
 
 </div>
 
-<%= render "layouts/firestore" %>
-<%= render "message/real_times_chat" %>
+<!-- javasriptをこのページだけ反映した
+    　やり方（quiita参照　URL:https://qiita.com/Hijiri-K/items/1a3f7137cf3186580447）
+     
+    app/assets/javascripts/application.jsの以下の一行を削除
+        //= require_tree .
+         
+    config/initializers/assets.rbに読み込みたいjsファイルを以下の方法で記述
+        Rails.application.config.assets.precompile += %w( FileName.js )
+-->
+<%= javascript_include_tag 'firestore.js' %>
+<%= javascript_include_tag 'realTimesChat.js' %>
     

@@ -11,6 +11,7 @@ class FriendController < ApplicationController
         session[:user] = UserUseCase.new.auth()
         ###################################
         @friends = []
+        
         if params[:friend_id].present?
             @friends = @@use_case.id_find_user(params[:friend_id])
         elsif params[:friend_name].present?
@@ -27,6 +28,9 @@ class FriendController < ApplicationController
     #フレンド情報のコントローラ
     def friend_info_view
         @friend = @@use_case.id_find_user(params[:friend_id])[Constants::ZERO]
+        @ver = @@use_case.get_timestamp_string
+        puts @ver
+
     end
 
     def friend_search

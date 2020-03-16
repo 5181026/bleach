@@ -23,6 +23,6 @@ class MessageRepository
             messages << m.data
         end
 
-        return messages
+        return messages , doc_id
     end
 end
