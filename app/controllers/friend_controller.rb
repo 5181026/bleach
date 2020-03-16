@@ -20,7 +20,6 @@ class FriendController < ApplicationController
 
         if @friends == [] 
             @friends = @@use_case.get_friends(session[:user].friends)
-            puts @friends
         end
        
     end
@@ -29,8 +28,6 @@ class FriendController < ApplicationController
     def friend_info_view
         @friend = @@use_case.id_find_user(params[:friend_id])[Constants::ZERO]
         @ver = @@use_case.get_timestamp_string
-        puts @ver
-
     end
 
     def friend_search
