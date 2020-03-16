@@ -88,4 +88,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  #javascript読み込み
+  # config.assets.precompile += ['realTimesChat.js']
+  # config.assets.precompile += ['firestore.js']
 end

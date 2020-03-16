@@ -1,4 +1,3 @@
-<script>
 var firebaseConfig = {
     apiKey: "AIzaSyCT7Ty0fCd-HVxPChBRXuohUibMaIwKXXQ",
     authDomain: "railssample5181026.firebaseapp.com",
@@ -9,7 +8,8 @@ var firebaseConfig = {
     appId: "1:892558366428:web:b5acf0eb51722f0b388619"
   };
 
-firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
-</script>
+var db = firebase.firestore();

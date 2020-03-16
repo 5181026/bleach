@@ -19,6 +19,5 @@ class UserController < ApplicationController
 
         # puts session[:user].friends[1][:messageid]
         puts session[:user].friends.select { |str| str[:friendid] == "test002"}
-        p "slkdfja;ls"
     end
 end

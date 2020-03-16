@@ -28,7 +28,7 @@
             </div>
             
             <div>
-                <%= link_to "チャット" , message_path(user_id: @friend[:userid] , friend_name: @friend[:name]) , class: "btn btn-success btn-lg pr-5 pl-5"%>
+                <%= link_to "チャット" , message_path(user_id: @friend[:userid] , friend_name: @friend[:name] , ver: @ver) , class: "btn btn-success btn-lg pr-5 pl-5"%>
                 <%= link_to "戻 る" , 'javascript:history.back()' , class: "btn btn-secondary btn-lg pr-5 pl-5"%>
             </div>
         </div>
