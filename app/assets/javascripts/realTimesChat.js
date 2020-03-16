@@ -1,6 +1,15 @@
+// TODO　chatが複数表示されるバグがあるとりあえずリロードすることでバグは出ない
+
+// バグがあるからリロード
+if (window.name != "reload"){
+	location.reload();
+	window.name = "reload";
+}else{
+    window.name = "";
+}
+
 var msg_form = document.querySelector("form");
 var btn = document.getElementById("form-btn");
-var count = 0;
 
 // テスト用チャットの追加用関数
 function chatsPrint(doc){
@@ -58,10 +67,6 @@ btn.addEventListener("click" , (e) =>{
 // 始めにfirestoreからデータをもらいchatsPrintにデータを渡す
 // そのあとリアルタイムでfirestoreに変化があれば更新する
 db.collection("message").doc(gon.doc_id).collection("content").orderBy("date").onSnapshot(snapshot => {
-
-    count++;
-    console.log(count);
-
     let changes = snapshot.docChanges();
     console.log(changes)
     changes.forEach(change => {
@@ -69,5 +74,5 @@ db.collection("message").doc(gon.doc_id).collection("content").orderBy("date").o
             chatsPrint(change.doc);
         }
     });
-    changes = "";
 });
+

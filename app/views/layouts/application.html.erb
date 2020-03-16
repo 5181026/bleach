@@ -21,6 +21,7 @@
     <%= include_gon %>
     </head>
   <body>
+    <%= javascript_include_tag 'firestore.js' %>
     <div class="container-fluid d-flex" id="main">
       <%= render 'layouts/nav' unless :use_nav.empty? %>
       <div class="container-fluid p-0" id="main-content"><%= yield %><div>
