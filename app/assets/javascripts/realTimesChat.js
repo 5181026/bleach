@@ -38,6 +38,7 @@ function chatsPrint(doc){
 }
 
 // 送信ボタンが押されたときにfirestoreにチャットデータを保存をする。(doc_idは本人のだけ使うからrailsから送る)
+//バグあり
 btn.addEventListener("click" , (e) =>{
     e.preventDefault();
     db.collection("message").doc(gon.doc_id).collection("content").add({
