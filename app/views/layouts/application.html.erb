@@ -23,7 +23,7 @@
   <body>
     <%= javascript_include_tag 'firestore.js' %>
     <div class="container-fluid d-flex" id="main">
-      <%= render 'layouts/nav' unless :use_nav.empty? %>
+      <%= render 'layouts/nav' if yield(:use_nav) == "true" %>
       <div class="container-fluid p-0" id="main-content"><%= yield %><div>
     </div>
   </body>

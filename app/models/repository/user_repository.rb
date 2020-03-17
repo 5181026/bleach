@@ -117,4 +117,17 @@ class UserRepository
 
         return mygroups
     end
+
+    def create_user(user_name , user_id , user_pass)
+        # 追加するデータのハッシュ
+        data = {
+            name: user_name,
+            userid: user_id,
+            password: user_pass
+        }
+        query = user_col()
+
+        added_doc_ref = query.add data
+        puts "Added document with ID: #{added_doc_ref.document_id}."
+    end
 end

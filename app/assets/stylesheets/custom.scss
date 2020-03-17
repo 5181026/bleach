@@ -18,11 +18,12 @@ body {
 
 }
 
-// コンテンツのスタイルシート
-#main-content{
-    margin-left: 235px; //ナビの分だけ左を空ける
-}
+
 
 .btn{
+    white-space: nowrap;
+}
+
+.form-label-text{
     white-space: nowrap;
 }

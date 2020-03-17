@@ -10,5 +10,6 @@ module Constants
     USER_ID = "user_id"
     USER_DOC_ID = "doc_id"
     DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
+    ADD_USER_TITLE = "アカウント登録"
     ZERO = 0
 end
