@@ -1,6 +1,16 @@
 class UserController < ApplicationController
+    @@use_case = UserUseCase.new
+    
     # ユーザ登録のコントローラ
-    def create_user
+    def add_user
+        @header_title = Constants::ADD_USER_TITLE;
+        user_name = params[:user_name]
+        user_id = params[:user_id]
+        user_pass = params[:user_pass]
+        re_pass = params[:re_pass]
+        puts user_name
+        puts ";ldsakfja;lsdkfja;lk"
+        @@use_case.create_account(user_name , user_id , user_pass , re_pass)
     end
     
     # ログインのコントローラ

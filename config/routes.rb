@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get "/add_user" , to: "user#add_user"
   get "/mypage" , to: "user#mypage_view"
   get "/friend_view" , to: "friend#friend_view"
   get "/friend_info_view" , to: "friend#friend_info_view"
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
   get "/group_info" , to: "group#group_info_view"
   get "/message" , to: "message#chat"
 
+  post "/add_user" , to: "user#add_user"
   post "/friend_view" , to: "friend#friend_view"
   post "/group_view" , to: "group#group_view"
 end

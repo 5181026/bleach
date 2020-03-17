@@ -1,6 +1,7 @@
 <!-- 相手の名前もしくはグループ名を表示 -->
+<% provide(:use_nav , true) %>
 <header>
-    <%= render ("message/message_header") %>
+<%= render ("layouts/header_title") %>
 </header>
 
 <!-- このページはリアルタイムで通信を行うのでjavascriptで処理を書く,画像は一度読み込めばいいのでメッセージのみ読み込む -->

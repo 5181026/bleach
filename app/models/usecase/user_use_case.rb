@@ -16,6 +16,14 @@ class UserUseCase
              )
     end
 
+    # TODO ユーザのアカウントを登録と値のチェックを行う
+    def create_account(user_name , user_id , user_pass , re_pass)
+        ########## 値のチェックをする #######
+
+        ###################################
+        @@user_repo.create_user(user_name , user_id , user_pass)
+    end
+
     def get_friends(user_friends)
         friend = user_friends.map do |s|
             @@user_repo.get_find_user_id(s[:friendid])
