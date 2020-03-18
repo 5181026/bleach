@@ -8,9 +8,9 @@ class UserController < ApplicationController
         user_id = params[:user_id]
         user_pass = params[:user_pass]
         re_pass = params[:re_pass]
-        puts user_name
-        puts ";ldsakfja;lsdkfja;lk"
-        @@use_case.create_account(user_name , user_id , user_pass , re_pass)
+
+        @@use_case.create_account(user_name , user_id , user_pass , re_pass) if user_name.present?
+        
     end
     
     # ログインのコントローラ

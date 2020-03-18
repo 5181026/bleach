@@ -123,11 +123,28 @@ class UserRepository
         data = {
             name: user_name,
             userid: user_id,
-            password: user_pass
+            password: user_pass,
+            age: "",
+            createdatetime: get_timestamp
         }
+
         query = user_col()
 
         added_doc_ref = query.add data
         puts "Added document with ID: #{added_doc_ref.document_id}."
+
+        query = add_user_col(added_doc_ref.document_id , FireConst::FIRE_COL_FIRENDS);
+
+        query.add(
+            friendid: ""
+        )
+        puts "Added data to the friends document in the users collection."
+
+        query = add_user_col(added_doc_ref.document_id, FireConst::FIRE_COL_MYGROUP);
+        
+        query.add(
+            groupid: ""
+        )
+        puts "Added data to the mygroup document in the users collection."
     end
 end
