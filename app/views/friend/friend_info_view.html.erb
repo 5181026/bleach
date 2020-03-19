@@ -18,17 +18,21 @@
             </div>
 
             <div class="info-text d-flex">
-                <div class>メール</div>
+                <div class>メール：</div>
                 <div class="ml-3">メールアドレス</div>
             </div>
 
             <div class="info-text d-flex">
-                <div>年齢</div>
+                <div>年齢：</div>
                 <div class="ml-3">年齢</div>
             </div>
             
-            <div>
-                <%= link_to "チャット" , message_path(user_id: @friend[:userid] , friend_name: @friend[:name] , ver: @ver) , class: "btn btn-success btn-lg pr-5 pl-5"%>
+            <div class="text-center d-flex mt-5">
+                <%= link_to "チャット" , message_path(user_id: @friend[:userid] , friend_name: @friend[:name]) , class: "btn btn-success btn-lg pr-5 pl-5 mr-4"%>
+                <%= form_with url: friend_info_view_path(user_id: @friend[:userid]) do |form| %>
+                     <%= form.submit "フレンドになる" , class: "btn btn-info btn-lg mr-4"%>
+                <% end %>
+
                 <%= link_to "戻 る" , 'javascript:history.back()' , class: "btn btn-secondary btn-lg pr-5 pl-5"%>
             </div>
         </div>

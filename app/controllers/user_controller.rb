@@ -12,6 +12,9 @@ class UserController < ApplicationController
         @@use_case.create_account(user_name , user_id , user_pass , re_pass) if user_name.present?
         
     end
+
+    def notification
+    end
     
     # ログインのコントローラ
     def login_user

@@ -43,6 +43,11 @@ nav > #nav-5{
     margin-top: 100px + 66px * 4;
 }
 
+nav > #nav-6{
+    @extend nav-format;
+    margin-top: 100px + 66px * 5;
+}
+
 nav > a:hover{
     background-color: rgb(198, 218, 238);
     opacity: 0.6;
@@ -61,9 +66,8 @@ nav > a:hover{
 }
 
 .nav-footer{
-    height: 234px;
     width: 240px;
-    margin-top: 100px + 66px * 5;
+    margin-top: 100px + 66px * 6;
     position: fixed;
     text-align: center;
     background-color: rgb(216, 220, 224);
