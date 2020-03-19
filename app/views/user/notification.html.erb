@@ -1,0 +1,17 @@
+<% provide( :use_nav , "true") %>
+
+<!-- 他の人からアクションがあったときに通知を表示する -->
+<!-- テーブルのレコードはnotification.jsで追加する -->
+<table class="table offset-2 col-8 mt-5 text-center">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">名前</th>
+            <th scope="col">内容</th>
+            <th scope="col"></th>  
+        </tr>
+    </thead>
+    <tbody id="notification-table">
+    </tbody>
+</table>
+
+<%= javascript_include_tag 'notification.js' %>

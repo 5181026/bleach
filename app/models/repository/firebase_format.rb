@@ -7,7 +7,7 @@ module FirebaseFormat
         @firestore.col(FireConst::FIRE_COL_USERS)
     end
 
-    def add_user_col(doc_id , col_name)
+    def user_sub_col(doc_id , col_name)
         # @firestore.doc("#{FireConst::FIRE_COL_USERS}/#{doc_id}/#{col_name}")
         @firestore.col("#{FireConst::FIRE_COL_USERS}").doc("#{doc_id}").col("#{col_name}")
     end

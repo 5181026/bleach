@@ -43,4 +43,8 @@ class UserUseCase
         users << @@user_repo.get_find_user_name(friend_name)
         users.delete_if { |i| i == {} || i == "" }
     end
+
+    def post_friend_request(user_id , friend_id)
+        @@user_repo.add_notification("001" , user_id , friend_id);
+    end
 end

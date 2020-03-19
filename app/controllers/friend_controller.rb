@@ -27,9 +27,12 @@ class FriendController < ApplicationController
     #フレンド情報のコントローラ
     def friend_info_view
         @friend = @@use_case.id_find_user(params[:friend_id])[Constants::ZERO]
-        @ver = @@use_case.get_timestamp_string
     end
 
     def friend_search
+    end
+
+    def friend_post_notification
+        @@use_case.post_friend_request(session[:user][Constants::USER_ID] , params[:user_id])
     end
 end

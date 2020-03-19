@@ -118,6 +118,7 @@ class UserRepository
         return mygroups
     end
 
+    # ユーザを追加するための関数
     def create_user(user_name , user_id , user_pass)
         # 追加するデータのハッシュ
         data = {
@@ -128,23 +129,57 @@ class UserRepository
             createdatetime: get_timestamp
         }
 
+        #userコレクションにドキュメントを追加
         query = user_col()
 
         added_doc_ref = query.add data
         puts "Added document with ID: #{added_doc_ref.document_id}."
 
-        query = add_user_col(added_doc_ref.document_id , FireConst::FIRE_COL_FIRENDS);
+        # friendコレクションを追加
+        query = user_sub_col(added_doc_ref.document_id , FireConst::FIRE_COL_FIRENDS);
 
         query.add(
-            friendid: ""
+            friendid: "",
+            messageid: ""
         )
         puts "Added data to the friends document in the users collection."
 
-        query = add_user_col(added_doc_ref.document_id, FireConst::FIRE_COL_MYGROUP);
+        # mygroupコレクションを追加
+        query = user_sub_col(added_doc_ref.document_id, FireConst::FIRE_COL_MYGROUP);
         
         query.add(
-            groupid: ""
+            groupid: "",
+            messageid: ""
         )
         puts "Added data to the mygroup document in the users collection."
+
+        #notificationコレクションを追加
+        query = user_sub_col(added_doc_ref.document_id , FireConst::FIRE_COL_NOTIFICATION)
+
+        query.add(
+            notificationid: "",
+            messageid: "",
+            date: get_timestamp
+        )
+        puts "Added data to the notification document in the users collection."
+    end
+
+    def add_notification(notification_id , post_user_id , user_id)
+        doc_id = ""
+        data = {
+            notificationid: notification_id,
+            postuserid: post_user_id
+        }
+
+        query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
+
+        query.get do |u|
+            doc_id = u.document_id
+        end
+
+        query = user_sub_col(doc_id , FireConst::FIRE_COL_NOTIFICATION)
+
+        added_doc_ref = query.add data
+        "Added document with ID: #{added_doc_ref.document_id}."
     end
 end

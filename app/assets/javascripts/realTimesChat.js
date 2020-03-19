@@ -68,11 +68,8 @@ btn.addEventListener("click" , (e) =>{
 // そのあとリアルタイムでfirestoreに変化があれば更新する
 db.collection("message").doc(gon.doc_id).collection("content").orderBy("date").onSnapshot(snapshot => {
     let changes = snapshot.docChanges();
-    console.log(changes)
     changes.forEach(change => {
-        if(change.type == "added"){
-            chatsPrint(change.doc);
-        }
+        chatsPrint(change.doc);
     });
 });
 
