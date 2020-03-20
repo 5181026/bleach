@@ -14,6 +14,8 @@ class UserController < ApplicationController
     end
 
     def notification
+        gon.user_doc_id = session[:user][Constants::USER_DOC_ID]
+        gon.user_id =  session[:user][Constants::USER_ID]
     end
     
     # ログインのコントローラ
