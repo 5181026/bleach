@@ -6,7 +6,7 @@ class MessageRepository
     end
 
     def get_messages(message_id)
-        messages = []
+        # messages = []
         doc_id = ""
 
         query = message_col().where(FireConst::FIRE_DOC_MESSAGE_ID , Constants::EQUAL , message_id)
@@ -16,13 +16,13 @@ class MessageRepository
             doc_id = m.document_id
         end
 
-        query = message_col.doc(doc_id).col(FireConst::FIRE_DOC_MESSAGE_CONTENT)
+        # query = message_col.doc(doc_id).col(FireConst::FIRE_DOC_MESSAGE_CONTENT)
         
         #取得したドキュメントIDのcontentを取得
-        query.get do |m|
-            messages << m.data
-        end
+        # query.get do |m|
+        #     messages << m.data
+        # end
 
-        return messages , doc_id
+        return  doc_id
     end
 end

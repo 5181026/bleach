@@ -154,21 +154,22 @@ class UserRepository
         puts "Added data to the mygroup document in the users collection."
 
         #notificationコレクションを追加
-        query = user_sub_col(added_doc_ref.document_id , FireConst::FIRE_COL_NOTIFICATION)
+        # query = user_sub_col(added_doc_ref.document_id , FireConst::FIRE_COL_NOTIFICATION)
 
-        query.add(
-            notificationid: "",
-            messageid: "",
-            date: get_timestamp
-        )
-        puts "Added data to the notification document in the users collection."
+        # query.add(
+        #     notificationid: "",
+        #     messageid: "",
+        #     date: get_timestamp
+        # )
+        # puts "Added data to the notification document in the users collection."
     end
 
     def add_notification(notification_id , post_user_id , user_id)
         doc_id = ""
         data = {
             notificationid: notification_id,
-            postuserid: post_user_id
+            postuserid: post_user_id,
+            date: get_timestamp
         }
 
         query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
