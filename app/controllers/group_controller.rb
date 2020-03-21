@@ -10,7 +10,7 @@ class GroupController < ApplicationController
     # グループ一覧のコントローラ
     def group_view
         #############テスト用##############
-        session[:user] = UserUseCase.new.auth()
+        # session[:user] = UserUseCase.new.auth()
         ###################################
         @groups = []
         # 検索した値をビューに渡す
@@ -19,16 +19,17 @@ class GroupController < ApplicationController
         elsif params[:group_name].present?
             @groups = @@use_case.get_find_name_group(params[:group_name])
         end
-
+        puts session[:user]["mygroups"]
+        puts session[:user][FireConst::FIRE_COL_MYGROUP]
         if @groups == []
-            @groups = @@use_case.get_all_mygroup()
+            @groups = @@use_case.get_all_mygroup(session[:user][Constants::USER_DOC_ID])
         end
     end
 
     # グループ情報のコントローラ
     def group_info_view
         @group = @@use_case.get_find_id_group(params[:group_id])[Constants::ZERO]
-        @user_id = session[:user]["#{Constants::USER_ID}"]
+        @user_id = session[:user][Constants::USER_ID]
     end
 
     #グループ検索のコントローラ

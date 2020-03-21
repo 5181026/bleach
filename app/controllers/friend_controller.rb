@@ -8,7 +8,7 @@ class FriendController < ApplicationController
     #フレンド一覧のコントローラ
     def friend_view
         #############テスト用##############
-        session[:user] = UserUseCase.new.auth()
+        # session[:user] = UserUseCase.new.auth()
         ###################################
         @friends = []
         
@@ -19,8 +19,12 @@ class FriendController < ApplicationController
         end
 
         if @friends == [] 
-            @friends = @@use_case.get_friends(session[:user].friends)
+            # @friends = @@use_case.get_friends(session[:user][FireConst::FIRE_COL_FIRENDS])
+            @friends = @@use_case.get_friends(session[:user][Constants::USER_DOC_ID])
         end
+        
+        puts "9283049182340sljkdfs"
+        puts @friends
        
     end
 

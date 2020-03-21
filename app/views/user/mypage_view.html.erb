@@ -9,12 +9,12 @@
         <div class="d-flex flex-column h4 pl-5">
             <div class="info-text d-flex">
                 <div class="text-right">ユーザID:</div>
-                <div class="ml-3"><%= session[:user].user_id %></div>
+                <div class="ml-3"><%= session[:user]["user_id"] %></div>
             </div>
 
             <div class="info-text d-flex">
                 <div>ユーザ名:</div>
-                <div class="ml-3"><%= session[:user].user_name%></div>
+                <div class="ml-3"><%= session[:user]["user_name"]%></div>
             </div>
 
             <div class="info-text d-flex">

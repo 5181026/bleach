@@ -18,6 +18,17 @@ class GroupRepository
         return groups
     end
 
+    def get_all_user_mygroup(doc_id)
+        mygroups = []
+        query = user_col().doc(doc_id).col(FireConst::FIRE_COL_MYGROUP)
+        
+        query.get do |g|
+            mygroups << g.data
+        end
+
+        return mygroups
+    end
+
     #グループのIDで一致した条件のグループをハッシュで返す
     def get_find_group_id(group_id)
         groups = ""

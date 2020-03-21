@@ -7,8 +7,8 @@
             <div class="d-flex">
                 <div><%= image_tag "https://picsum.photos/200/300" , class: "nav-image" %></div> <!-- 画像を表示する（ruby）-->
                 <div class="d-flex flex-column align-self-center"> <!-- 名前とIDを縦に表示する -->
-                    <div><b>Taro Yamada</b></div>                   <!-- 名前つける(ruby) --> 
-                    <div class="text-center">ID:23740928</div>
+                    <div><b><%= session[:user]["user_name"] %></b></div>                   <!-- 名前つける(ruby) --> 
+                    <div class="text-center">ID: <%= session[:user]["user_id"] %></div>
                 </div>
             </div>
         </div>
