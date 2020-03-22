@@ -1,0 +1,21 @@
+<% provide(:use_nav , false) %>
+<%= render ("layouts/header_title") %>
+<div class="row mt-5">
+    <div class="col-8 offset-2 mt-5">
+        <%= form_with url: root_path , local: true do |form| %>
+            <div class="d-flex text-right mt-5 form-label-text">
+                <div class="col-4 align-self-center align-item-end">ID</div>
+                <div class="col-6"><%= form.text_field :user_id , class: "form-control" , size: 50 , placeholder: "IDを入力"  %></div>
+            </div>
+
+            <div class="d-flex text-right mt-5 form-label-text">
+                <div class="col-4 align-self-center align-item-end">パスワード</div>
+                <div class="col-6"><%= form.password_field :user_pass , class: "form-control" , size: 50 , placeholder: "パスワードを入力"  %></div>
+            </div>
+            <div class="col-7 offset-3 mt-5">
+                <%= form.submit "ログイン" , class: " btn btn-success btn-lg btn-block"%>
+                <%= link_to "アカウントお持ちでない方" , add_user_path , class: "btn btn-primary btn-lg btn-block btn-lg"%>
+            </div>
+        <% end %>
+    </div>
+</div>

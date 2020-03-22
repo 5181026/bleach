@@ -18,6 +18,7 @@ class UserRepository
     end
 
     #認証したユーザをハッシュで返す
+    #ユーザのdocidを返す
     def get_auth_user(user_id , user_pass)
         users = {}
         doc_id = ""
@@ -63,7 +64,6 @@ class UserRepository
         query.get do |f|
             friends << f.data
         end
-
         return friends
     end
 
@@ -94,16 +94,16 @@ class UserRepository
     end
 
     # ユーザのグループを全て取得する
-    def get_all_mygroup(doc_id)
-        mygroups = []
-        query = user_col().doc(doc_id).col(FireConst::FIRE_COL_MYGROUP)
+    # def get_all_mygroup(doc_id)
+    #     mygroups = []
+    #     query = user_col().doc(doc_id).col(FireConst::FIRE_COL_MYGROUP)
         
-        query.get do |g|
-            mygroups << g.data
-        end
+    #     query.get do |g|
+    #         mygroups << g.data
+    #     end
 
-        return mygroups
-    end
+    #     return mygroups
+    # end
 
     # IDで一致したグループを取得
     def get_find_mygroup(doc_id , group_id)
@@ -136,22 +136,22 @@ class UserRepository
         puts "Added document with ID: #{added_doc_ref.document_id}."
 
         # friendコレクションを追加
-        query = user_sub_col(added_doc_ref.document_id , FireConst::FIRE_COL_FIRENDS);
+        # query = user_sub_col(added_doc_ref.document_id , FireConst::FIRE_COL_FIRENDS);
 
-        query.add(
-            friendid: "",
-            messageid: ""
-        )
-        puts "Added data to the friends document in the users collection."
+        # query.add(
+        #     friendid: "",
+        #     messageid: ""
+        # )
+        # puts "Added data to the friends document in the users collection."
 
         # mygroupコレクションを追加
-        query = user_sub_col(added_doc_ref.document_id, FireConst::FIRE_COL_MYGROUP);
+        # query = user_sub_col(added_doc_ref.document_id, FireConst::FIRE_COL_MYGROUP);
         
-        query.add(
-            groupid: "",
-            messageid: ""
-        )
-        puts "Added data to the mygroup document in the users collection."
+        # query.add(
+        #     groupid: "",
+        #     messageid: ""
+        # )
+        # puts "Added data to the mygroup document in the users collection."
 
         #notificationコレクションを追加
         # query = user_sub_col(added_doc_ref.document_id , FireConst::FIRE_COL_NOTIFICATION)

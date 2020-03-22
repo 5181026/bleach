@@ -1,17 +1,15 @@
 class GroupUseCase
     @@group_repo = GroupRepositoryFactory.new.repository
 
-    def get_all_mygroup
-        #############テスト用##############
-        @user = UserUseCase.new.auth()
-        ###################################
-
+    def get_all_mygroup(doc_id)
         #ユーザからgroupidを調べて取得する。
-        mygroup = @user.mygroups.map do |s| 
+        mygroup_id = @@group_repo.get_all_user_mygroup(doc_id)
+        mygroups = mygroup_id.map do |s| 
             @@group_repo.get_find_group_id(s[:groupid]) 
         end
-        mygroup.delete_if { |i| i == {} }   #空のハッシュを削除する(本来は必要ない)
-        return mygroup
+        mygroups.delete_if { |i| i == {} }   #空のハッシュを削除する(本来は必要ない)
+        puts mygroups
+        return mygroups
     end 
 
     #グループIDで検索し配列で返す
