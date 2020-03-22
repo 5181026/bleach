@@ -5,6 +5,7 @@ class MessageRepository
         @firestore = firestore
     end
 
+    # userごとのmessageidを取得する
     def get_messages_id(user_doc_id , user_id)
         message_id = ""
 
@@ -17,6 +18,7 @@ class MessageRepository
         return message_id
     end
 
+    #messageのdocdiを取得
     def get_messages_doc_id(message_id)
         # messages = []
         doc_id = ""
@@ -29,12 +31,7 @@ class MessageRepository
         end
 
         query = message_col.doc(doc_id).col(FireConst::FIRE_DOC_MESSAGE_CONTENT)
-        
-        # 取得したドキュメントIDのcontentを取得
-        # query.get do |m|
-        #     messages << m.data
-        # end
 
-        return  doc_id
+        return doc_id
     end
 end

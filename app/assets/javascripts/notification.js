@@ -89,7 +89,7 @@ db.collection("users").doc(gon.user_doc_id).collection("notification").orderBy("
 
 function friendAdd (friend_id , notificationDocId){
     var messageId = createMessageId("F")
-    //フレンド登録するための関数
+    //フレンド登録の通知を送るための関数
     var friendAddFun = function(){
         //ログインしているユーザのデータベースに登録する
         //登録するのはcheckExistisDocで行う
