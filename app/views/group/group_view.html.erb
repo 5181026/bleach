@@ -2,8 +2,8 @@
 
 <div class="row">
     <div class ="container text-right mt-3">
-        <%= link_to("グループを探す" , "/group_search" , class: "btn btn-outline-primary" , type: "button")%>
-        <%= link_to("グループを作る" , "#" , class: "btn btn-outline-primary" , type: "button")%>
+        <%= link_to("グループを探す" , group_search_path , class: "btn btn-outline-primary" , type: "button")%>
+        <%= link_to("グループを作る" , group_create_path , class: "btn btn-outline-primary" , type: "button")%>
     </div>
 <!-- グループ一覧の画像を表示 -->
     <% for group in @groups do %>      <!-- データベースから送られてきた分だけループする -->
@@ -13,6 +13,6 @@
                 <%= image_tag "https://picsum.photos/200/300" , class: "view-images" %>
                 <div class="image-name col-12 ml-md-2"><%= group[:groupname] %></div>
             <% end %>
-        </div> 
+        </div>
     <% end %>
 </div>

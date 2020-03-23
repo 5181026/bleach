@@ -31,6 +31,7 @@ if (window.name != "reload"){
     rejectionBtn.type = "button";
     rejectionBtn.classList.add("btn" , "btn-secondary" , "btn-sm" , "mr-3");
     rejectionBtn.textContent = "拒否"
+    rejectionBtn.onclick = function() { deleteNotification(doc.id); }
 
     getUserName(doc.data().postuserid , userNameTd)
 

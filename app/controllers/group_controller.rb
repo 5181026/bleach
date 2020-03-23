@@ -4,7 +4,12 @@ class GroupController < ApplicationController
     @@use_case = GroupUseCase.new
     
     # グループ登録のコントローラ
-    def group_add
+    def group_create
+        @header_title = "グループ作成"
+        if params[:group_id].present?
+            @@use_case.create_new_group(params[:group_id] , params[:group_name] , session[:user][Constants::USER_ID])
+            redirect_to action: "group_view"
+        end
     end
 
     # グループ一覧のコントローラ
@@ -19,8 +24,7 @@ class GroupController < ApplicationController
         elsif params[:group_name].present?
             @groups = @@use_case.get_find_name_group(params[:group_name])
         end
-        puts session[:user]["mygroups"]
-        puts session[:user][FireConst::FIRE_COL_MYGROUP]
+
         if @groups == []
             @groups = @@use_case.get_all_mygroup(session[:user][Constants::USER_DOC_ID])
         end
@@ -34,5 +38,10 @@ class GroupController < ApplicationController
 
     #グループ検索のコントローラ
     def group_search
+    end
+
+    # notificationにグループの招待を追加する
+    def group_post_notification(group_id)
+        puts group_id
     end
 end

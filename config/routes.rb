@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/friend_info_view" , to: "friend#friend_info_view"
   get "/friend_search" , to: "friend#friend_search"
   get "/group_view" , to: "group#group_view"
+  get "/group_create"  , to: "group#group_create"
   get "/group_search" , to: "group#group_search"
   get "/group_info" , to: "group#group_info_view"
   get "/message" , to: "message#chat"
@@ -18,4 +19,6 @@ Rails.application.routes.draw do
   post "/friend_view" , to: "friend#friend_view"
   post "/friend_info_view" , to: "friend#friend_post_notification"
   post "/group_view" , to: "group#group_view"
+  post "group_create" , to: "group#group_create"
+  post "/group_info_view" , to: "group#group_post_notification"
 end

@@ -25,4 +25,14 @@ class GroupUseCase
         mygroup << @@group_repo.get_find_group_name(group_name)
         mygroup.delete_if { |i| i == {} || i == "" }   #空のハッシュを削除する(本来は必要ない)
     end
+
+    def create_new_group(group_id , group_name , user_id)
+        unless group_id_exists?(group_id)
+            @@group_repo.add_create_group(group_id , group_name , user_id)
+        end
+    end
+
+    def group_id_exists?(group_id)
+        return @@group_repo.get_find_group_id(group_id).present?
+    end
 end

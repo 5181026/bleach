@@ -1,0 +1,21 @@
+<% provide(:use_nav , false) %>
+<%= render ("layouts/header_title") %>
+<div class="row">
+    <div class="col-8 offset-2">
+        <%= form_with url: group_create_path , local: true do |form| %>
+            <div class="d-flex text-right mt-5 form-label-text">
+                <div class="col-4 align-self-center">グループ名</div>
+                <div class="col-7"><%= form.text_field :group_name , class: "form-control" , size: 50 , placeholder: "名前を入力"  %></div>
+            </div>
+
+            <div class="d-flex text-right mt-5 form-label-text">
+                <div class="col-4 align-self-center align-item-end">グループID</div>
+                <div class="col-7"><%= form.text_field :group_id , class: "form-control" , size: 50 , placeholder: "IDを入力"  %></div>
+            </div>
+            <div class="offset-4 mt-5">
+                <%= form.submit "登　録" , class: "btn btn-success btn-lg pr-5 pl-5 mr-5"%>
+                <%= link_to "キャンセル" , 'javascript:history.back()' , class: "btn btn-secondary btn-lg pr-4 pl-4"%>
+            </div>
+        <% end %>
+    </div>
+</div>

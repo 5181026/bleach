@@ -29,10 +29,13 @@
             
             <div class="d-flex">
                 <!-- 権限があるユーザにだけ押せるようにする -->
-                <% if @group[:createuserid] == @user_id%>
+                <% if @group[:createuserid] == @user_id %>
                     <%= link_to "編集する" , "#" , class: "btn btn-primary btn-lg pr-5 pl-5 mr-3"%>
                 <% end %>
-                <%= link_to "チャット" , '#' , class: "btn btn-success btn-lg pr-5 pl-5 mr-3"%>
+                <%= button_to "チャット" , "#" , {id: "chat-btn" , class: "btn btn-success btn-lg pr-5 pl-5 mr-4" , disabled: true }  %>
+                <%= form_with url: group_info_view_path(group_id: @group) , id: "group-form" do |form| %>
+                    <%= form.submit "グループに招待する" , class: "btn btn-info btn-lg mr-4" , id: "group-btn" %>
+                <% end %>
                 <%= link_to "戻 る" , 'javascript:history.back()' , class: "btn btn-secondary btn-lg pr-5 pl-5"%>
             </div>
         </div>
