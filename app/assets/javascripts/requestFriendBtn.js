@@ -1,4 +1,5 @@
 var friendBtn = document.querySelector("#friend-btn");
+var chatBtn = document.querySelector("#chat-btn")
 var form = document.getElementById("friend-form")
 
 function friendBtnDisabled(text){
@@ -9,6 +10,7 @@ function friendBtnDisabled(text){
 if(gon.friend_flg){
     let text = "フレンドです"
     friendBtnDisabled(text)
+    chatBtn.disabled = false    //フレンドの人にはボタンを活性化する
 }else if(gon.friend_request_flg){
     let text = "送信済み"
     friendBtnDisabled(text)
