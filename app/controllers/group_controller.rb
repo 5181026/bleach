@@ -7,7 +7,8 @@ class GroupController < ApplicationController
     def group_create
         @header_title = "グループ作成"
         if params[:group_id].present?
-            @@use_case.create_new_group(params[:group_id] , params[:group_name] , session[:user][Constants::USER_ID])
+            @@use_case.create_new_group(params[:group_id] , params[:group_name],
+                session[:user][Constants::USER_ID] , session[:user][Constants::USER_DOC_ID])
             redirect_to action: "group_view"
         end
     end

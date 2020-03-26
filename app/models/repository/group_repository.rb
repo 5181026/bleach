@@ -18,6 +18,7 @@ class GroupRepository
         return groups
     end
 
+    
     def get_all_user_mygroup(doc_id)
         mygroups = []
         query = user_col().doc(doc_id).col(FireConst::FIRE_COL_MYGROUP)
@@ -25,8 +26,14 @@ class GroupRepository
         query.get do |g|
             mygroups << g.data
         end
-
-        return mygroups
+        
+        groups = []
+        mygroups.map do |i|
+            group_col.where(FireConst::FIRE_DOC_GROUP_ID , Constants::EQUAL , i[:groupid]).get do |g|
+               groups << g.data
+            end
+        end 
+        return groups
     end
 
     #グループのIDで一致した条件のグループをハッシュで返す
@@ -67,7 +74,7 @@ class GroupRepository
     end
 
     # 新しくグループを作成する
-    def add_create_group(group_id , group_name , user_id)
+    def add_create_group(group_id , group_name , user_id , user_doc_id)
         data = {
             createuserid: user_id,
             groupid: group_id,
@@ -79,17 +86,30 @@ class GroupRepository
 
         "Added document with ID: #{added_doc_ref.document_id}."
 
-        add_group_members(added_doc_ref.document_id , user_id)
+        add_group_members(added_doc_ref.document_id , user_id , group_id , user_doc_id)
+
     end
 
-    # グループのメンバに追加する
-    def add_group_members(doc_id , user_id)
+    # グループのメンバに追加しユーザーのmygroupにもグループを追加する。
+    def add_group_members(doc_id , user_id , group_id , user_doc_id)
 
         data = {
             memberid: user_id
         }
 
-        added_doc_ref = group_col().doc(doc_id).col(FireConst::FIRE_COL_MEMBER).add data
+        query = group_col().doc(doc_id).col(FireConst::FIRE_COL_MEMBER)
+        added_doc_ref = query.add data
+        
+        "Added document with ID: #{added_doc_ref.document_id}."
+
+        data = {
+            groupid: group_id
+        }
+
+        query = user_col().doc(user_doc_id).col(FireConst::FIRE_COL_MYGROUP)
+
+        added_doc_ref = query.add data
+        
         "Added document with ID: #{added_doc_ref.document_id}."
     end
 end

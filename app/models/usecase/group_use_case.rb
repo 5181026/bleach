@@ -26,9 +26,9 @@ class GroupUseCase
         mygroup.delete_if { |i| i == {} || i == "" }   #空のハッシュを削除する(本来は必要ない)
     end
 
-    def create_new_group(group_id , group_name , user_id)
+    def create_new_group(group_id , group_name , user_id , user_doc_id)
         unless group_id_exists?(group_id)
-            @@group_repo.add_create_group(group_id , group_name , user_id)
+            @@group_repo.add_create_group(group_id , group_name , user_id , user_doc_id)
         end
     end
 
