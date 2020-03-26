@@ -192,7 +192,7 @@ class UserRepository
         query = user_sub_col(doc_id , FireConst::FIRE_COL_NOTIFICATION)
 
         added_doc_ref = query.add data
-        "Added document with ID: #{added_doc_ref.document_id}."
+            
     end
 
     def get_find_friend_notification(doc_id , friend_id)

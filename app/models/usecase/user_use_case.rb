@@ -48,6 +48,7 @@ class UserUseCase
         @@user_repo.add_notification("001" , user_id , friend_id);
     end
 
+    #同じ通知が存在するか
     def friend_request?(friend_id)
         doc_id = @@user_repo.get_find_user_doc_id(friend_id)
         notification = @@user_repo.get_find_friend_notification(doc_id , friend_id)
