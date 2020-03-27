@@ -19,4 +19,16 @@ module FirebaseFormat
     def message_col
         @firestore.col(FireConst::FIRE_COL_MESSAGE)
     end
+
+    # ユーザのdocumentid取得
+    def get_find_user_doc_id(user_id)
+        doc_id = ""
+        query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
+
+        query.get do |u|
+            doc_id = u.document_id
+        end
+
+        return doc_id
+    end
 end

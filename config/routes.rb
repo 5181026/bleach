@@ -13,12 +13,13 @@ Rails.application.routes.draw do
   get "/group_search" , to: "group#group_search"
   get "/group_info" , to: "group#group_info_view"
   get "/message" , to: "message#chat"
+  get "/message" , to: "message#chat"
 
   post "/" , to: "user#login"
   post "/add_user" , to: "user#add_user"
   post "/friend_view" , to: "friend#friend_view"
   post "/friend_info_view" , to: "friend#friend_post_notification"
   post "/group_view" , to: "group#group_view"
-  post "group_create" , to: "group#group_create"
+  post "/group_create" , to: "group#group_create"
   post "/group_info_view" , to: "group#group_post_notification"
 end
