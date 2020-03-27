@@ -45,16 +45,6 @@ class UserRepository
         return users
     end
 
-    def get_find_user_doc_id(user_id)
-        doc_id = ""
-        query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
-
-        query.get do |u|
-            doc_id = u.document_id
-        end
-
-        return doc_id
-    end
 
     def get_find_user_name(user_name)
         users = {}
@@ -175,10 +165,10 @@ class UserRepository
         # puts "Added data to the notification document in the users collection."
     end
 
-    def add_notification(notification_id , post_user_id , user_id)
+    def add_notification(post_user_id , user_id)
         doc_id = ""
         data = {
-            notificationid: notification_id,
+            notificationid: FireConst::NOTIFICATION_FRIEND_REQUEST_ID,
             postuserid: post_user_id,
             date: get_timestamp
         }
@@ -195,16 +185,13 @@ class UserRepository
             
     end
 
-    def get_find_friend_notification(doc_id , friend_id)
+    def get_find_friend_notification(doc_id , user_id)
         notification = ""
-        begin
-            query = user_col().doc(doc_id).col(FireConst::FIRE_COL_NOTIFICATION)
+        query = user_col().doc(doc_id).col(FireConst::FIRE_COL_NOTIFICATION).
+            where(FireConst::FIRE_DOC_NOTIFICATION_POST_ID , Constants::EQUAL , user_id)
 
-            query.get do |n|
-                notification = n.data
-            end
-        rescue => error
-            puts "0392841-0384"
+        query.get do |n|
+            notification  = n.data if n.data[:notificationid][0] == FireConst::NOTIFICATION_FRIEND_REQUEST_ID[0]
         end
 
         return notification

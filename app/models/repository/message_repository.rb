@@ -6,7 +6,7 @@ class MessageRepository
     end
 
     # userごとのmessageidを取得する
-    def get_messages_id(user_doc_id , user_id)
+    def get_friend_messages_id(user_doc_id , user_id)
         message_id = ""
 
         query = user_col().doc(user_doc_id).col(FireConst::FIRE_COL_FIRENDS)
@@ -18,9 +18,21 @@ class MessageRepository
         return message_id
     end
 
-    #messageのdocdiを取得
+    # グループのmessage_idを取得する
+    def get_group_messages_id(group_id)
+        message_id = ""
+
+        query = group_col().where(FireConst::FIRE_DOC_GROUP_ID , Constants::EQUAL , group_id)
+
+        query.get do |m|
+            message_id = m.data[:messageid]
+        end
+
+        return message_id
+    end
+
+    #messageのdocidを取得
     def get_messages_doc_id(message_id)
-        # messages = []
         doc_id = ""
 
         query = message_col().where(FireConst::FIRE_DOC_MESSAGE_ID , Constants::EQUAL , message_id)

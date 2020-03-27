@@ -15,9 +15,6 @@ class GroupController < ApplicationController
 
     # グループ一覧のコントローラ
     def group_view
-        #############テスト用##############
-        # session[:user] = UserUseCase.new.auth()
-        ###################################
         @groups = []
         # 検索した値をビューに渡す
         if params[:group_id].present?
@@ -35,6 +32,10 @@ class GroupController < ApplicationController
     def group_info_view
         @group = @@use_case.get_find_id_group(params[:group_id])[Constants::ZERO]
         @user_id = session[:user][Constants::USER_ID]
+        # 同じ通知があるか確認する
+        gon.group_request_flg = @@use_case.group_request?(params[:create_user_id] , session[:user][Constants::USER_ID])
+        #既にグループのメンバーか確認する
+        gon.group_flg = @@use_case.group_members?(session[:user][Constants::USER_DOC_ID] , params[:group_id])
     end
 
     #グループ検索のコントローラ
@@ -42,7 +43,9 @@ class GroupController < ApplicationController
     end
 
     # notificationにグループの招待を追加する
-    def group_post_notification(group_id)
-        puts group_id
+    def group_post_notification
+        puts "グループボタンが押されました#{params[:create_user_id]}"
+        @@use_case.post_join_group_request(session[:user][Constants::USER_ID] , params[:create_user_id] , params[:group_id]);
+        
     end
 end

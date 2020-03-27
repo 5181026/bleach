@@ -40,17 +40,18 @@ if (window.name != "reload"){
     // notification_idごとにテーブルの色を分ける
     switch(String(notificationId).slice(0,1)){         //フレンド申請の通知
         case "0":
-            tr.classList.add("table-primary");
-            notificationTd.textContent = "フレンド依頼を受け取りました"
+            tr.classList.add("table-success");
+            notificationTd.textContent = "フレンド依頼を受け取りました。"
             approvalBtn.onclick = function () { friendAdd(doc.data().postuserid , doc.id); };
             break;
         case "1":  //グループの通知
-            tr.classList.add("table-secondary");
-            notificationTd.textContent = "グループに誘われました"
+            tr.classList.add("table-primary");
+            getGroup(doc.data().groupid , notificationTd)
+            approvalBtn.onclick = function () { groupAdd(doc.data().postuserid , doc.data().groupid , doc.id); }
             break;
         case "2":                                                //新規メッセージの通知 
             tr.classList.add("table-warning");
-            notificationTd.textContent = "新規メッセージがあります"
+            notificationTd.textContent = "新規メッセージがあります。"
             approvalBtn.classList.add("d-none");
             rejectionBtn.classList.add("d-none");
             break;
@@ -87,7 +88,6 @@ db.collection("users").doc(gon.user_doc_id).collection("notification").orderBy("
     });
 });
 
-
 function friendAdd (friend_id , notificationDocId){
     var messageId = createMessageId("F")
     //フレンド登録の通知を送るための関数
@@ -103,20 +103,48 @@ function friendAdd (friend_id , notificationDocId){
             var docId
             snapshot.docs.forEach((doc) => {
                 docId = doc.id
-            })
+            });
             //通知を送った相手のデータベースに登録する
             db.collection("users").doc(docId).collection("friends").add({
                 friendid: gon.user_id,
                 messageid: messageId
-            })
-        })
-        //messageを追加する
-        db.collection("message").add({
-            messageid: messageId
-        })
+            });
+        });
+        // //messageを追加する
+        // db.collection("message").add({
+        //     messageid: messageId
+        // })
     }
     checkExistisMessageDoc(messageId , friendAddFun)    //messageidが存在しないことを確認しfriendとmessageを登録する
     deleteNotification(notificationDocId)       //データベースからnotificationのdocumentを削除する
+}
+
+function groupAdd(userId , groupId, notificationDocId) {
+    // 送ってきた相手のdocumentIDを取得
+    db.collection("users").where("userid" , "==" , userId).get().then((snapshot) => {
+        let docId
+        snapshot.docs.forEach((doc) => {
+            docId = doc.id
+        });
+    
+        db.collection("users").doc(docId).collection("mygroup").add({
+            groupid: groupId
+            // messageid: messageId
+        });
+    });
+
+    // groupのdocumentIdを取得する
+    db.collection("groups").where("groupid" , "==" , groupId).get().then((snapshot) => {
+        let docId
+        snapshot.docs.forEach((doc) => {
+            docId = doc.id
+        });
+        // 通知を送った相手をメンバに追加する。
+        db.collection("groups").doc(docId).collection("members").add({
+            memberid: userId
+        });
+    });
+    deleteNotification(notificationDocId)
 }
 
 //データベースからnotificationのdocumentを削除する関数
@@ -130,9 +158,8 @@ function createMessageId(firstChar){
     return firstChar + random
 }
 
-//messageidが存在しないことを確認しfriendとmessageを登録する
-function checkExistisMessageDoc(messageId , friendAddFun){
-    
+//messageidが存在しないことを確認し追加する関数を処理しmessageを登録する
+function checkExistisMessageDoc(messageId , AddFunction){
     db.collection("message").where("messageid" , "==" , messageId).get().then((snapshot) => {
         var user
         snapshot.docs.forEach((doc) => {
@@ -140,7 +167,22 @@ function checkExistisMessageDoc(messageId , friendAddFun){
         })
         console.log(messageId)
         if(user == undefined){
-            friendAddFun()
+            AddFunction()
+            //messageを追加する
+            db.collection("message").add({
+                messageid: messageId
+            })
         }
     })
 }
+
+function getGroup(groupId , td){
+    console.log(groupId)
+    db.collection("groups").where("groupid" , "==" , groupId).get().then((snapshot) => {
+        var group
+        snapshot.docs.forEach((doc) => {
+            group = doc.data()
+        })
+        td.textContent = group.groupname + "グループに入りたいです。"
+    })
+    }

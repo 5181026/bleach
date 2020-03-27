@@ -45,13 +45,13 @@ class UserUseCase
     end
 
     def post_friend_request(user_id , friend_id)
-        @@user_repo.add_notification("001" , user_id , friend_id);
+        @@user_repo.add_notification(user_id , friend_id);
     end
 
     #同じ通知が存在するか
-    def friend_request?(friend_id)
+    def friend_request?(friend_id ,user_id)
         doc_id = @@user_repo.get_find_user_doc_id(friend_id)
-        notification = @@user_repo.get_find_friend_notification(doc_id , friend_id)
+        notification = @@user_repo.get_find_friend_notification(doc_id , user_id)
         return notification.present?
     end
 end

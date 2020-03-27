@@ -27,12 +27,38 @@ class GroupUseCase
     end
 
     def create_new_group(group_id , group_name , user_id , user_doc_id)
+        message_id = create_group_message_id
         unless group_id_exists?(group_id)
-            @@group_repo.add_create_group(group_id , group_name , user_id , user_doc_id)
+            @@group_repo.add_create_group(group_id , group_name , user_id , user_doc_id , message_id)
+        end
+    end
+
+    def create_group_message_id
+        random = Random.new()
+        firstChar = "G"
+        message_id = @@group_repo.get_find_message("#{firstChar}#{random.rand(10**16)}")
+        while message_id.present? do 
+            @@group_repo.get_find_message("#{firstChar}#{random.rand(10**16)}")
         end
     end
 
     def group_id_exists?(group_id)
         return @@group_repo.get_find_group_id(group_id).present?
+    end
+
+    def post_join_group_request(user_id , create_user_id , group_id)
+        @@group_repo.add_group_join_notification(user_id , create_user_id , group_id)
+    end
+
+    # 同じ通知が存在するか確認する
+    def group_request?(group_admin_id , user_id)
+        doc_id = @@group_repo.get_find_user_doc_id(group_admin_id)
+        notification = @@group_repo.get_find_group_notification(doc_id , user_id)
+        return notification.present?
+    end
+
+    def group_members?(doc_id , group_id)
+        group = @@group_repo.get_find_mygroup(doc_id , group_id)
+        return group.present?
     end
 end
