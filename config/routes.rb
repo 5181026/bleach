@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/group_info" , to: "group#group_info_view"
   get "/message" , to: "message#chat"
   get "/message" , to: "message#chat"
+  get "/time_line" , to: "time_line#time_line_view"
 
   post "/" , to: "user#login"
   post "/add_user" , to: "user#add_user"

@@ -19,6 +19,7 @@ module FireConst
     FIRE_DOC_USER_ID = "userid"
     FIRE_DOC_USER_PASS = "password"
     FIRE_DOC_USER_NAME = "name"
+    FIRE_DOC_TIMELINE_POST_USER_ID= "postuserid"
     FIRE_DOC_USER_FRIEND_ID = "friendid"
     FIRE_DOC_USER_FRIEND_NAME = "friendname"
     FIRE_DOC_NOTIFICATION_POST_ID = "postuserid"

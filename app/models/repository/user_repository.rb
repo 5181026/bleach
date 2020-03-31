@@ -58,15 +58,15 @@ class UserRepository
     end
     
     # ユーザの全てのフレンドを配列で返す
-    def get_all_friends(doc_id)
-        friends = []
-        query = user_col().doc(doc_id).col(FireConst::FIRE_COL_FIRENDS)
+    # def get_all_friends(doc_id)
+    #     friends = []
+    #     query = user_col().doc(doc_id).col(FireConst::FIRE_COL_FIRENDS)
         
-        query.get do |f|
-            friends << f.data
-        end
-        return friends
-    end
+    #     query.get do |f|
+    #         friends << f.data
+    #     end
+    #     return friends
+    # end
 
     # IDが一致したユーザのフレンドを取得
     def get_id_find_friend(doc_id , friend_id)

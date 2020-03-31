@@ -2,8 +2,8 @@
 class UserUseCase
     @@user_repo = UserRepositoryFactory.new().repository
     
-    #ログインの認証をする(テスト)
-    def auth (user_id , user_pass)#テスト用ユーザ
+    #ログインの認証をする
+    def auth (user_id , user_pass)
         user_data , auth_doc_id = @@user_repo.get_auth_user(user_id , user_pass) 
         @user = User.new(
             doc_id = auth_doc_id, 
@@ -27,7 +27,7 @@ class UserUseCase
     def get_friends(doc_id)
         user_friends = @@user_repo.get_all_friends(doc_id)
         friend = user_friends.map do |s|
-            @@user_repo.get_find_user_id(s[:friendid])
+            @@user_repo.get_find_user_id(s)
         end
         return friend
     end

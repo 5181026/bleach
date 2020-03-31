@@ -30,6 +30,6 @@ end
 # MessageRepositoryのインスタンスを生成する
 class TimeLineRepositoryFactory < RepositoryFactory
     def new_repository
-        MessageRepository.new(@firestore)
+        TimeLineRepository.new(@firestore)
     end
 end
