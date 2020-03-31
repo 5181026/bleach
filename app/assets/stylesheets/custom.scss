@@ -7,7 +7,6 @@ html {
 body {
     height: 100%;
     letter-spacing: 0.2em;
-
     font-family: Century;
 }
 
@@ -26,4 +25,8 @@ body {
 
 .form-label-text{
     white-space: nowrap;
+}
+
+.material-icons{
+    vertical-align: text-bottom;
 }

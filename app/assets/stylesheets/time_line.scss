@@ -1,0 +1,24 @@
+// Place all the styles related to the timeLine controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.card{
+    min-width: 500px;
+}
+
+.card-header{
+    font-size: 1.1rem;
+}
+
+.card-content{
+    font-size: 1.0rem;
+}
+
+blockquote > footer{
+    font-size: 0.9rem;
+}
+
+.time-line-date{
+    font-size: 0.9rem;
+    float: right;
+}
