@@ -36,10 +36,13 @@ class GroupUseCase
     def create_group_message_id
         random = Random.new()
         firstChar = "G"
-        message_id = @@group_repo.get_find_message("#{firstChar}#{random.rand(10**16)}")
-        while message_id.present? do 
-            @@group_repo.get_find_message("#{firstChar}#{random.rand(10**16)}")
+        create_id = "#{firstChar}#{random.rand(10**16)}"
+        data = @@group_repo.get_find_message(create_id)
+        while data.present? do 
+            create_id = "#{firstChar}#{random.rand(10**16)}"
+            data = @@group_repo.get_find_message(create_id)
         end
+        return create_id
     end
 
     def group_id_exists?(group_id)
