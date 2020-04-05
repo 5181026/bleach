@@ -7,9 +7,6 @@ class FriendController < ApplicationController
 
     #フレンド一覧のアクション
     def friend_view
-        #############テスト用##############
-        # session[:user] = UserUseCase.new.auth()
-        ###################################
         @friends = []
         
         if params[:friend_id].present?
@@ -19,7 +16,6 @@ class FriendController < ApplicationController
         end
 
         if @friends == [] 
-            # @friends = @@use_case.get_friends(session[:user][FireConst::FIRE_COL_FIRENDS])
             @friends = @@use_case.get_friends(session[:user][Constants::USER_DOC_ID])
         end
     end
@@ -34,8 +30,6 @@ class FriendController < ApplicationController
         myfriends = myfriends.select { |user| user[:userid] == params[:friend_id]} #フレンドに存在してるか調べる
         myfriends.delete_if { |i| i == {} || i == "" }  #配列の中身から空の値を削除する
         gon.friend_flg = myfriends.present?
-
-
     end
 
     def friend_search

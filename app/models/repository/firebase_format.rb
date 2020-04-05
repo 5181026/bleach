@@ -2,7 +2,7 @@
 
 # 途中
 module FirebaseFormat
-    include CreateTimestamp
+    include Timestamp
     def user_col
         @firestore.col(FireConst::FIRE_COL_USERS)
     end
@@ -47,10 +47,7 @@ module FirebaseFormat
     end
 
     def where_format(query , compare_doc , operator , *compare_value)
-        puts operator
-        puts query.class
         compare_value.map do |value|
-            puts value
             query = query.where(compare_doc , operator , value)
         end
         return query

@@ -46,6 +46,5 @@ class GroupController < ApplicationController
     def group_post_notification
         puts "グループボタンが押されました#{params[:create_user_id]}"
         @@use_case.post_join_group_request(session[:user][Constants::USER_ID] , params[:create_user_id] , params[:group_id]);
-        
     end
 end

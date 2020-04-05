@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "/message" , to: "message#chat"
   get "/message" , to: "message#chat"
   get "/time_line" , to: "time_line#time_line_view"
+  get "/time_line_post" , to: "time_line#time_line_post"
 
   post "/" , to: "user#login"
   post "/add_user" , to: "user#add_user"
@@ -23,4 +24,6 @@ Rails.application.routes.draw do
   post "/group_view" , to: "group#group_view"
   post "/group_create" , to: "group#group_create"
   post "/group_info_view" , to: "group#group_post_notification"
+  post "/time_line_post" , to: "time_line#time_line_post"
+  post "/time_line" , to: "time_line#click_good_icon"
 end

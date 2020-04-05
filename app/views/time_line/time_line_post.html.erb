@@ -1,0 +1,12 @@
+<% provide(:use_nav , true) %>
+<%= form_with url: time_line_post_path , local: true do |form| %>
+    <div class="mt-5 form-label-text offset-3 h5">
+        <div class="col-4 text-left mb-3">投稿用フォーム</div>
+        <div class="col-8"><%= form.text_area :post_content , class: "form-control" , size: "30x7" , placeholder: "投稿内容を入力してください" %></div>
+        <div class="col align-self-end mt-3 offset-1">
+            <%= form.submit "投稿" , class: "btn btn-success btn-lg pr-5 pl-5 m-3" %>
+            <%= link_to "戻 る" , :back , class: "btn btn-secondary btn-lg pr-5 pl-5 m-3"%>
+        </div>
+    </div>
+    
+<% end %>
