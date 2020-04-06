@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/add_user" , to: "user#add_user"
   get "/mypage" , to: "user#mypage_view"
   get "/notification" , to: "user#notification"
+  get "/user_edit" , to: "user#user_edit"
   get "/friend_view" , to: "friend#friend_view"
   get "/friend_info_view" , to: "friend#friend_info_view"
   get "/friend_search" , to: "friend#friend_search"
@@ -13,9 +14,9 @@ Rails.application.routes.draw do
   get "/group_search" , to: "group#group_search"
   get "/group_info" , to: "group#group_info_view"
   get "/message" , to: "message#chat"
-  get "/message" , to: "message#chat"
   get "/time_line" , to: "time_line#time_line_view"
   get "/time_line_post" , to: "time_line#time_line_post"
+  
 
   post "/" , to: "user#login"
   post "/add_user" , to: "user#add_user"
@@ -26,4 +27,5 @@ Rails.application.routes.draw do
   post "/group_info_view" , to: "group#group_post_notification"
   post "/time_line_post" , to: "time_line#time_line_post"
   post "/time_line" , to: "time_line#click_good_icon"
+  post "/user_edit" , to: "user#click_edit_button"
 end

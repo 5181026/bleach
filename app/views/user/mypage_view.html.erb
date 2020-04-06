@@ -19,16 +19,16 @@
 
             <div class="info-text d-flex">
                 <div class>　メール:</div>
-                <div class="ml-3">メールアドレス</div>
+                <div class="ml-3"><%= replace_to_str(session[:user]["user_mail"]) %></div>
             </div>
 
             <div class="info-text d-flex">
                 <div>　　年齢:</div>
-                <div class="ml-3">年齢</div>
+                <div class="ml-3"><%= replace_to_str(session[:user]["user_age"]) %></div>
             </div>
             
             <div>
-                <%= link_to "編集する" , "#" , class: "btn btn-primary btn-lg pr-5 pl-5"%>
+                <%= link_to "編集する" , user_edit_path , class: "btn btn-primary btn-lg pr-5 pl-5"%>
                 <%= link_to "戻 る" , "javascript:history.back()" , class: "btn btn-secondary btn-lg pr-5 pl-5"%>
             </div>
         </div>
