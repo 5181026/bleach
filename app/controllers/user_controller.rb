@@ -31,11 +31,13 @@ class UserController < ApplicationController
     end
 
     # ユーザ編集のコントローラ
-    def edit_user
+    def user_edit
+        @header_title = "編集ページ"
     end
 
     #プロフィール表示のコントローラ
     def mypage_view 
+        puts session[:user]["user_mail"]
         #############テスト用##############
         # session[:user] = UserUseCase.new.auth()
         ###################################
@@ -46,5 +48,14 @@ class UserController < ApplicationController
         # @user_id = session[:user]["user_id"]
         # @user_name = session[:user]["user_name"]
         # puts session[:user][FireConst::FIRE_COL_FIRENDS].select { |str| str[:friendid] == "test002"}
+    end
+
+    def click_edit_button
+        session[:user][:user_name] = params[:user_name]
+        session[:user][:user_mail] = params[:user_mail]
+        session[:user][:user_age] = params[:user_age]
+        
+        @@use_case.user_parameter_edit(session[:user])
+        redirect_to action: "mypage_view"
     end
 end

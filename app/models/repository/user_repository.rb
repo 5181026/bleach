@@ -196,4 +196,10 @@ class UserRepository
 
         return notification
     end
+
+    def user_update(user)
+        query = user_col().doc(user["doc_id"]) 
+        puts "user_pudate#{user[:user_name]}"
+        query.update name: user[:user_name] , mail: user[:user_mail] , age: user[:user_age]
+    end
 end

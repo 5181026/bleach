@@ -9,7 +9,8 @@ class UserUseCase
             doc_id = auth_doc_id, 
             user_name = user_data[:name], 
             user_id = user_data[:userid],
-            user_age = "",
+            user_mail = user_data[:mail],
+            user_age = user_data[:age],
             # friends = @@user_repo.get_all_friends(auth_doc_id),
             # mygroup = @@user_repo.get_all_mygroup(auth_doc_id),
             create_datetime = @@user_repo.get_timestamp
@@ -53,5 +54,9 @@ class UserUseCase
         doc_id = @@user_repo.get_find_user_doc_id(friend_id)
         notification = @@user_repo.get_find_friend_notification(doc_id , user_id)
         return notification.present?
+    end
+
+    def user_parameter_edit(user)
+        @@user_repo.user_update(user)
     end
 end
