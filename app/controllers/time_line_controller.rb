@@ -9,14 +9,12 @@ class TimeLineController < ApplicationController
     def time_line_post
         if params[:post_content].present?
             @@use_case.time_line_post(session[:user][Constants::USER_ID] , params[:post_content])
-            redirect_to action: "time_line_view"
+            redirect_to action: :time_line_view
         end 
     end
 
     def click_good_icon
-        puts "クリックされました#{params[:time_line_id]}"
-        good_users = "" 
-        # good_users_id.select { |id| id == user_id }
+        good_users = Constants::EMPTY
         if params[:good_user].present?
             # 既に登録されているか確認する。
             if params[:good_user].select {|id| id == session[:user][Constants::USER_ID]}.blank?
@@ -28,7 +26,6 @@ class TimeLineController < ApplicationController
             good_users = [session[:user][Constants::USER_ID]]
         end
 
-        puts "グッドユーザ#{good_users[0].class}"
         @@use_case.add_good_user(good_users , params[:time_line_id])
     end
 end

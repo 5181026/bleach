@@ -16,14 +16,14 @@ class GroupUseCase
     def get_find_id_group(group_id)
         mygroup = []
         mygroup << @@group_repo.get_find_group_id(group_id) 
-        mygroup.delete_if { |i| i == {} || i == "" }   #空のハッシュを削除する(本来は必要ない)
+        mygroup.delete_if { |i| i == {} || i == Constants::EMPTY }   #空のハッシュを削除する(本来は必要ない)
     end
 
     #グループ名で検索し配列で返す
     def get_find_name_group(group_name)
         mygroup = []
         mygroup << @@group_repo.get_find_group_name(group_name)
-        mygroup.delete_if { |i| i == {} || i == "" }   #空のハッシュを削除する(本来は必要ない)
+        mygroup.delete_if { |i| i == {} || i == Constants::EMPTY }   #空のハッシュを削除する(本来は必要ない)
     end
 
     def create_new_group(group_id , group_name , user_id , user_doc_id)
@@ -35,7 +35,7 @@ class GroupUseCase
 
     def create_group_message_id
         random = Random.new()
-        firstChar = "G"
+        firstChar = Constants::MESSAGE_ID_FIRST_CHAR_G
         create_id = "#{firstChar}#{random.rand(10**16)}"
         data = @@group_repo.get_find_message(create_id)
         while data.present? do 
@@ -43,6 +43,12 @@ class GroupUseCase
             data = @@group_repo.get_find_message(create_id)
         end
         return create_id
+    end
+
+    #グループ内のメンバーを取得する。
+    def get_group_members(group_id)
+        doc_id = @@group_repo.get_group_doc_id(group_id)
+        @@group_repo.get_group_menbers(doc_id)
     end
 
     def group_id_exists?(group_id)
@@ -60,13 +66,18 @@ class GroupUseCase
         return notification.present?
     end
 
-    def group_members?(doc_id , group_id)
-        group = @@group_repo.get_find_mygroup(doc_id , group_id)
+    def group_members?(user_doc_id , group_id)
+        group = @@group_repo.get_find_mygroup(user_doc_id , group_id)
         return group.present?
     end
 
     def edit_group_parameter(group_id , group_name)
         doc_id = @@group_repo.get_group_doc_id(group_id)
         @@group_repo.update_group(doc_id , group_name)
+    end
+
+    #IDで指定されたユーザ情報を取得
+    def get_user(user_id)
+        return @@group_repo.get_find_user_id(user_id)
     end
 end

@@ -5,11 +5,11 @@ class GroupController < ApplicationController
     
     # グループ登録のコントローラ
     def group_create
-        @header_title = "グループ作成"
+        @header_title = Constants::GROUP_CREATE_TITLE
         if params[:group_id].present?
             @@use_case.create_new_group(params[:group_id] , params[:group_name],
                 session[:user][Constants::USER_ID] , session[:user][Constants::USER_DOC_ID])
-            redirect_to action: "group_view"
+            redirect_to action: :group_view
         end
     end
 
@@ -31,6 +31,8 @@ class GroupController < ApplicationController
     # グループ情報のコントローラ
     def group_info_view
         @group = @@use_case.get_find_id_group(params[:group_id])[Constants::ZERO]
+        @admin_user_name = @@use_case.get_user(@group[:createuserid])[:name]
+        @group_members = @@use_case.get_group_members(params[:group_id])
         @user_id = session[:user][Constants::USER_ID]
         # 同じ通知があるか確認する
         gon.group_request_flg = @@use_case.group_request?(params[:create_user_id] , session[:user][Constants::USER_ID])
@@ -44,12 +46,11 @@ class GroupController < ApplicationController
 
     # notificationにグループの招待を追加する
     def group_post_notification
-        puts "グループボタンが押されました#{params[:create_user_id]}"
         @@use_case.post_join_group_request(session[:user][Constants::USER_ID] , params[:create_user_id] , params[:group_id]);
     end
 
     def group_edit
-        @header_title = "編集ページ"
+        @header_title = Constants::EDIT_TITLE
         @group_name = params[:group_name]
         @group_id = params[:group_id]
     end
