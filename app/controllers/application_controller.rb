@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   #ログインしていないユーザをloginに戻す
   def authorize_user
     unless session[:user].present?
-        redirect_to action: "login"
+        redirect_to action: :login
     end
   end
 end

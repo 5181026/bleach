@@ -28,7 +28,7 @@ class FriendController < ApplicationController
         # すでにフレンドなのか調べる
         myfriends = @@use_case.get_friends(session[:user][Constants::USER_DOC_ID])  
         myfriends = myfriends.select { |user| user[:userid] == params[:friend_id]} #フレンドに存在してるか調べる
-        myfriends.delete_if { |i| i == {} || i == "" }  #配列の中身から空の値を削除する
+        myfriends.delete_if { |i| i == {} || i == Constants::EMPTY }  #配列の中身から空の値を削除する
         gon.friend_flg = myfriends.present?
     end
 

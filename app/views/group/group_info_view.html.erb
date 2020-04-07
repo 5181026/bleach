@@ -23,12 +23,12 @@
 
             <div class="info-text d-flex">
                 <div class>管理者:　　</div>
-                <div class="ml-3"><%= @group[:createuserid] %></div>
+                <div class="ml-3"><%= @admin_user_name %></div>
             </div>
 
             <div class="info-text d-flex">
                 <div>メンバー:　</div>
-                <div class="ml-3">グループの人数</div>
+                <div class="ml-3"><%= @group_members.length %>人</div>
             </div>
             
             <div class="d-flex">

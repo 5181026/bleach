@@ -21,7 +21,7 @@ class UserRepository
     #ユーザのdocidを返す
     def get_auth_user(user_id , user_pass)
         users = {}
-        doc_id = ""
+        doc_id = Constants::EMPTY
         query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
             .where(FireConst::FIRE_DOC_USER_PASS , Constants::EQUAL , user_pass)
 
@@ -33,19 +33,7 @@ class UserRepository
         return users , doc_id
     end
 
-    # 条件にid検索で一致したユーザをハッシュで返す
-    def get_find_user_id(user_id)
-        users = {}
-        query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
-        
-        query.get do |u|
-            users = u.data
-        end
-
-        return users
-    end
-
-
+    #ユーザ名が一致したものをハッシュで返す
     def get_find_user_name(user_name)
         users = {}
         query = user_col().where(FireConst::FIRE_DOC_USER_NAME , Constants::EQUAL , user_name)
@@ -126,51 +114,22 @@ class UserRepository
             name: user_name,
             userid: user_id,
             password: user_pass,
-            age: "",
-            createdatetime: get_timestamp
+            age: Constants::EMPTY,
+            createdatetime: Time.now
         }
 
         #userコレクションにドキュメントを追加
         query = user_col()
 
         added_doc_ref = query.add data
-        puts "Added document with ID: #{added_doc_ref.document_id}."
-
-        # friendコレクションを追加
-        # query = user_sub_col(added_doc_ref.document_id , FireConst::FIRE_COL_FIRENDS);
-
-        # query.add(
-        #     friendid: "",
-        #     messageid: ""
-        # )
-        # puts "Added data to the friends document in the users collection."
-
-        # mygroupコレクションを追加
-        # query = user_sub_col(added_doc_ref.document_id, FireConst::FIRE_COL_MYGROUP);
-        
-        # query.add(
-        #     groupid: "",
-        #     messageid: ""
-        # )
-        # puts "Added data to the mygroup document in the users collection."
-
-        #notificationコレクションを追加
-        # query = user_sub_col(added_doc_ref.document_id , FireConst::FIRE_COL_NOTIFICATION)
-
-        # query.add(
-        #     notificationid: "",
-        #     messageid: "",
-        #     date: get_timestamp
-        # )
-        # puts "Added data to the notification document in the users collection."
     end
 
     def add_notification(post_user_id , user_id)
-        doc_id = ""
+        doc_id = Constants::EMPTY
         data = {
             notificationid: FireConst::NOTIFICATION_FRIEND_REQUEST_ID,
             postuserid: post_user_id,
-            date: get_timestamp
+            date: Time.now
         }
 
         query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
@@ -186,7 +145,7 @@ class UserRepository
     end
 
     def get_find_friend_notification(doc_id , user_id)
-        notification = ""
+        notification = Constants::EMPTY
         query = user_col().doc(doc_id).col(FireConst::FIRE_COL_NOTIFICATION).
             where(FireConst::FIRE_DOC_NOTIFICATION_POST_ID , Constants::EQUAL , user_id)
 
@@ -198,8 +157,7 @@ class UserRepository
     end
 
     def user_update(user)
-        query = user_col().doc(user["doc_id"]) 
-        puts "user_pudate#{user[:user_name]}"
+        query = user_col().doc(user[Constants::USER_DOC_ID]) 
         query.update name: user[:user_name] , mail: user[:user_mail] , age: user[:user_age]
     end
 end

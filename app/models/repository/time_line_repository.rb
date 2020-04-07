@@ -19,7 +19,7 @@ class TimeLineRepository
 
     # タイムラインIDでタイムランを取ってくる
     def get_find_time_line(time_line_id)
-        time_line = ""
+        time_line = Constants::EMPTY
 
         query = time_line_col().where(FireConst::FIRE_DOC_TIME_LINE_ID , Constants::EQUAL , time_line_id)
 
@@ -31,7 +31,7 @@ class TimeLineRepository
     end
 
     def get_time_line_doc_id(time_line_id)
-        doc_id = ""
+        doc_id = Constants::EMPTY
 
         query = time_line_col.where(FireConst::FIRE_DOC_TIME_LINE_ID , Constants::EQUAL , time_line_id)
 
@@ -49,11 +49,10 @@ class TimeLineRepository
             postuserid: user_id,
             content: content,
             gooduserid: [],
-            date: get_timestamp
+            date: Time.now
         }
         added_doc_ref = time_line_col.add data
 
-        "Added document with ID: #{added_doc_ref.document_id}."
     end
 
     def update_good(good_users_id , time_line_id)

@@ -11,17 +11,12 @@ class UserUseCase
             user_id = user_data[:userid],
             user_mail = user_data[:mail],
             user_age = user_data[:age],
-            # friends = @@user_repo.get_all_friends(auth_doc_id),
-            # mygroup = @@user_repo.get_all_mygroup(auth_doc_id),
-            create_datetime = @@user_repo.get_timestamp
+            create_datetime = Time.now
             )
     end
 
     # TODO ユーザのアカウントを登録と値のチェックを行う
     def create_account(user_name , user_id , user_pass , re_pass)
-        ########## 値のチェックをする #######
-
-        ###################################
         @@user_repo.create_user(user_name , user_id , user_pass)
     end
 
@@ -36,13 +31,13 @@ class UserUseCase
     def id_find_user(user_id)
         users = []
         users << @@user_repo.get_find_user_id(user_id) 
-        users.delete_if { |i| i == {} || i == "" }   #空のハッシュを削除する(本来は必要ない)
+        users.delete_if { |i| i == {} || i == Constants::EMPTY }   #空のハッシュを削除する(本来は必要ない)
     end
 
     def name_find_user(friend_name)
         users = []
         users << @@user_repo.get_find_user_name(friend_name)
-        users.delete_if { |i| i == {} || i == "" }
+        users.delete_if { |i| i == {} || i == Constants::EMPTY }
     end
 
     def post_friend_request(user_id , friend_id)

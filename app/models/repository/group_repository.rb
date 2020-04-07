@@ -19,7 +19,7 @@ class GroupRepository
     end
 
     def get_group_doc_id(group_id)
-        doc_id = ""
+        doc_id = Constants::EMPTY
         query = group_col().where(FireConst::FIRE_DOC_GROUP_ID , Constants::EQUAL , group_id)
 
         query.get do |g|
@@ -49,7 +49,7 @@ class GroupRepository
 
     #グループのIDで一致した条件のグループをハッシュで返す
     def get_find_group_id(group_id)
-        groups = ""
+        groups = Constants::EMPTY
         query = group_col().where(FireConst::FIRE_DOC_GROUP_ID , Constants::EQUAL , group_id)
 
         query.get do |g|
@@ -61,7 +61,7 @@ class GroupRepository
 
 
     def get_find_group_name(group_name)
-        groups = ""
+        groups = Constants::EMPTY
         query = group_col().where(FireConst::FIRE_DOC_GROUP_NAME , Constants::EQUAL , group_name)
 
         query.get do |g|
@@ -72,16 +72,16 @@ class GroupRepository
     end
 
 
-    # グループ内のメンバーを配列で返す
-    def get_all_group_user
-        users = []
-        query = group_col().doc("C0zpm3X9usKAywkTnCK0").col(FireConst::FIRE_DOC_GROUP_MEMBER_ID)
+    # グループ内のメンバーを返す
+    def get_group_menbers(doc_id)
+        members= []
+        query = group_col().doc(doc_id).col(FireConst::FIRE_COL_MEMBER)
 
         query.get do |u|
-            users << u.data
+            members << u.data
         end
 
-        return users
+        return members
     end
 
     # 新しくグループを作成する
@@ -91,20 +91,17 @@ class GroupRepository
             groupid: group_id,
             groupname: group_name,
             messageid: message_id,
-            date: get_timestamp()
+            date: Time.now
         }
 
         added_doc_ref = group_col().add data
 
-        "Added document with ID: #{added_doc_ref.document_id}."
         # message collectionを追加する
         data = {
             messageid: message_id
         }
 
         added_doc_ref = message_col().add data
-
-        "Added document with ID: #{added_doc_ref.document_id}."
 
         add_group_members(added_doc_ref.document_id , user_id , group_id , user_doc_id)
 
@@ -118,8 +115,6 @@ class GroupRepository
         }
 
         added_doc_ref = group_col().doc(doc_id).col(FireConst::FIRE_COL_MEMBER).add data
-        
-        "Added document with ID: #{added_doc_ref.document_id}."
 
         data = {
             groupid: group_id
@@ -127,7 +122,6 @@ class GroupRepository
 
         added_doc_ref = user_col().doc(user_doc_id).col(FireConst::FIRE_COL_MYGROUP).add data
 
-        "Added document with ID: #{added_doc_ref.document_id}."
     end
 
     #グループの入るための通知(notification)を追加する
@@ -137,7 +131,7 @@ class GroupRepository
             notificationid: FireConst::NOTIFICATION_GROUP_JOIN_ID,
             postuserid: user_id,
             groupid: group_id,
-            date: get_timestamp
+            date: Time.now
         }
 
         query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , create_user_id)
@@ -147,12 +141,10 @@ class GroupRepository
         end
 
         added_doc_ref = user_col().doc(doc_id).col(FireConst::FIRE_COL_NOTIFICATION).add data
-
-        "Added document with ID: #{added_doc_ref.document_id}."
     end
 
     def get_find_group_notification(doc_id , user_id)
-        notification = ""
+        notification = Constants::EMPTY
         query = user_col().doc(doc_id).col(FireConst::FIRE_COL_NOTIFICATION).
             where(FireConst::FIRE_DOC_NOTIFICATION_POST_ID , Constants::EQUAL , user_id);
         
@@ -164,7 +156,7 @@ class GroupRepository
     end
 
     def get_find_mygroup(doc_id , group_id)
-        group = ""
+        group = Constants::EMPTY
 
         query = user_col().doc(doc_id).col(FireConst::FIRE_COL_MYGROUP).
             where(FireConst::FIRE_DOC_GROUP_ID , Constants::EQUAL , group_id)
@@ -178,7 +170,7 @@ class GroupRepository
 
     # message_idが同じか確認するため
     def get_find_message(message_id)
-        message = ""
+        message = Constants::EMPTY
 
         query = message_col().where(FireConst::FIRE_DOC_MESSAGE_ID , Constants::EQUAL , message_id)
 

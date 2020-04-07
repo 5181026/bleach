@@ -8,7 +8,7 @@ module FirebaseFormat
     end
 
     def user_sub_col(doc_id , col_name)
-        @firestore.col("#{FireConst::FIRE_COL_USERS}").doc("#{doc_id}").col("#{col_name}")
+        @firestore.col(FireConst::FIRE_COL_USERS).doc(doc_id).col(col_name)
     end
 
     def group_col
@@ -25,7 +25,7 @@ module FirebaseFormat
 
     # ユーザのdocumentid取得
     def get_find_user_doc_id(user_id)
-        doc_id = ""
+        doc_id = Constants::EMPTY
         query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
 
         query.get do |u|
@@ -33,6 +33,18 @@ module FirebaseFormat
         end
 
         return doc_id
+    end
+
+    # 条件にid検索で一致したユーザをハッシュで返す
+    def get_find_user_id(user_id)
+        users = {}
+        query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
+        
+        query.get do |u|
+            users = u.data
+        end
+
+        return users
     end
 
     # ユーザの全てのfriend_idを配列で返す
