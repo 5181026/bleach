@@ -34,7 +34,7 @@
             <div class="d-flex">
                 <!-- 権限があるユーザにだけ押せるようにする -->
                 <% if @group[:createuserid] == @user_id %>
-                    <%= link_to "編集する" , "#" , class: "btn btn-primary btn-lg pr-5 pl-5 mr-3"%>
+                    <%= link_to "編集する" , group_edit_path(group_name: @group[:groupname] , group_id: @group[:groupid]) , class: "btn btn-primary btn-lg pr-5 pl-5 mr-3"%>
                 <% end %>
                 <%= button_to "チャット" , message_path , { method: :get , params: {group_id: @group[:groupid] , title_name: @group[:groupname]} , id: "chat-btn" , class: "btn btn-success btn-lg pr-5 pl-5 mr-4" , disabled: true }  %>
                 <%= link_to "戻 る" , 'javascript:history.back()' , class: "btn btn-secondary btn-lg pr-5 pl-5"%>

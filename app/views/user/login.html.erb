@@ -2,7 +2,7 @@
 <%= render ("layouts/header_title") %>
 <div class="row mt-5">
     <div class="col-8 offset-2 mt-5">
-        <%= form_with url: root_path , local: true do |form| %>
+        <%= form_with url: root_path , local: true , class: "custom-form" do |form| %>
             <div class="d-flex text-right mt-5 form-label-text">
                 <div class="col-4 align-self-center align-item-end">ID</div>
                 <div class="col-6"><%= form.text_field :user_id , class: "form-control" , size: 50 , placeholder: "IDを入力"%></div>

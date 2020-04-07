@@ -3,7 +3,7 @@
 <%= render ("layouts/header_title") %>
 <div class="row">
     <div class="col-8 offset-2">
-        <%= form_with url: add_user_path , local: true do |form| %>
+        <%= form_with url: add_user_path , local: true , class: "custom-form" do |form| %>
             <div class="d-flex text-right mt-5 form-label-text">
                 <div class="col-4 align-self-center">名前</div>
                 <div class="col-7"><%= form.text_field :user_name , class: "form-control" , size: 50 , placeholder: "名前を入力"  %></div>
