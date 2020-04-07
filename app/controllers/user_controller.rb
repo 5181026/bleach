@@ -50,7 +50,7 @@ class UserController < ApplicationController
         # puts session[:user][FireConst::FIRE_COL_FIRENDS].select { |str| str[:friendid] == "test002"}
     end
 
-    def click_edit_button
+    def click_user_edit_button
         session[:user][:user_name] = params[:user_name]
         session[:user][:user_mail] = params[:user_mail]
         session[:user][:user_age] = params[:user_age]

@@ -64,4 +64,9 @@ class GroupUseCase
         group = @@group_repo.get_find_mygroup(doc_id , group_id)
         return group.present?
     end
+
+    def edit_group_parameter(group_id , group_name)
+        doc_id = @@group_repo.get_group_doc_id(group_id)
+        @@group_repo.update_group(doc_id , group_name)
+    end
 end

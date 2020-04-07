@@ -47,4 +47,16 @@ class GroupController < ApplicationController
         puts "グループボタンが押されました#{params[:create_user_id]}"
         @@use_case.post_join_group_request(session[:user][Constants::USER_ID] , params[:create_user_id] , params[:group_id]);
     end
+
+    def group_edit
+        @header_title = "編集ページ"
+        @group_name = params[:group_name]
+        @group_id = params[:group_id]
+    end
+
+    def click_group_edit_button
+        @@use_case.edit_group_parameter(params[:group_id] , params[:group_name])
+        # redirect_back(fallback_location: group_info_view_path)
+        redirect_to action: :group_info_view , create_user_id: session[:user][Constants::USER_ID] , group_id: params[:group_id] 
+    end
 end

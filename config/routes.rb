@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "/group_create"  , to: "group#group_create"
   get "/group_search" , to: "group#group_search"
   get "/group_info" , to: "group#group_info_view"
+  get "/group_edit" , to: "group#group_edit"
   get "/message" , to: "message#chat"
   get "/time_line" , to: "time_line#time_line_view"
   get "/time_line_post" , to: "time_line#time_line_post"
@@ -20,12 +21,14 @@ Rails.application.routes.draw do
 
   post "/" , to: "user#login"
   post "/add_user" , to: "user#add_user"
+  post "/user_edit" , to: "user#click_user_edit_button"
   post "/friend_view" , to: "friend#friend_view"
   post "/friend_info_view" , to: "friend#friend_post_notification"
   post "/group_view" , to: "group#group_view"
   post "/group_create" , to: "group#group_create"
+  post "/group_edit" , to: "group#click_group_edit_button"
   post "/group_info_view" , to: "group#group_post_notification"
   post "/time_line_post" , to: "time_line#time_line_post"
   post "/time_line" , to: "time_line#click_good_icon"
-  post "/user_edit" , to: "user#click_edit_button"
+  
 end

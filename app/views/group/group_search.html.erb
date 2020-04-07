@@ -3,7 +3,7 @@
 <!-- グループIDで検索するためのフォーム　-->
 <div class="offset-lg-2 offset-1 col-lg-8 col-11 mt-4 border border-primary rounded-pill group-search">
     <div class="h4 text-center">グループIDで検索</div>
-    <%= form_with url: group_view_path , local: true do |form| %>
+    <%= form_with url: group_view_path , local: true , class: "custom-form" do |form| %>
         <div class="text-center d-flex mt-5">
             <%= form.text_field :group_id , class: "form-control" , size: 50 , maxlength: "30" , placeholder: "グループのIDを入力"  %>
             <%= form.submit "検索" , class: "btn btn-primary btn-lg ml-3 pr-4 pl-4 pt-0 pb-0"%>
@@ -14,7 +14,7 @@
 <!-- グループ名で検索するためのフォーム　-->
 <div class="offset-lg-2 offset-1 col-lg-8 col-11 mt-4 border border-primary rounded-pill group-search">
     <div class="h4 text-center">グループ名で検索</div>
-    <%= form_with url: group_view_path , local: true do |form| %>
+    <%= form_with url: group_view_path , local: true , class: "custom-form" do |form| %>
         <div class="text-center d-flex mt-5">
             <%= form.text_field :group_name , class: "form-control" , size: 50 , maxlength: "30" , placeholder: "グループの名前を入力"  %>
             <%= form.submit "検索" , class: "btn btn-primary btn-lg ml-3 pr-4 pl-4 pt-0 pb-0"%>

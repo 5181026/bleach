@@ -18,6 +18,17 @@ class GroupRepository
         return groups
     end
 
+    def get_group_doc_id(group_id)
+        doc_id = ""
+        query = group_col().where(FireConst::FIRE_DOC_GROUP_ID , Constants::EQUAL , group_id)
+
+        query.get do |g|
+            doc_id = g.document_id
+        end
+        
+        return doc_id 
+    end
+
     
     def get_all_user_mygroup(doc_id)
         mygroups = []
@@ -176,5 +187,11 @@ class GroupRepository
         end
 
         return message
+    end
+
+    def update_group(doc_id , group_name)
+        query = group_col().doc(doc_id)
+
+        query.update groupname: group_name
     end
 end
