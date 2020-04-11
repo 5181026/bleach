@@ -7,10 +7,6 @@ module FirebaseFormat
         @firestore.col(FireConst::FIRE_COL_USERS)
     end
 
-    def user_sub_col(doc_id , col_name)
-        @firestore.col(FireConst::FIRE_COL_USERS).doc(doc_id).col(col_name)
-    end
-
     def group_col
         @firestore.col(FireConst::FIRE_COL_GROUP)
     end
@@ -21,6 +17,43 @@ module FirebaseFormat
 
     def time_line_col
         @firestore.col(FireConst::FIRE_COL_TIMELINE)
+    end
+
+    def get_data_format(query)
+        data = Constants::EMPTY
+        query.get do |d|
+            data = d.data
+        end
+
+        return data
+    end
+
+    def get_doc_id_format(query)
+        doc_id = Constants::EMPTY
+        query.get do |d|
+            doc_id = d.document_id
+        end
+
+        return doc_id
+    end
+
+
+    def get_arrays_format(query)
+        data = []
+        query.get do |d|
+            data << d.data
+        end
+
+        return data
+    end
+
+    def multiple_where_format(query , compare_doc , operator , compare_value)
+        counter = Constants::ZERO
+        compare_value.map do |value|
+            query = query.where(compare_doc[counter] , operator , value)
+            counter = counter.next
+        end
+        return query
     end
 
     # ユーザのdocumentid取得
@@ -47,6 +80,7 @@ module FirebaseFormat
         return users
     end
 
+
     # ユーザの全てのfriend_idを配列で返す
     def get_all_friends(doc_id)
         friends_id = []
@@ -56,12 +90,5 @@ module FirebaseFormat
             friends_id << f.data[:friendid]
         end
         return friends_id
-    end
-
-    def where_format(query , compare_doc , operator , *compare_value)
-        compare_value.map do |value|
-            query = query.where(compare_doc , operator , value)
-        end
-        return query
     end
 end
