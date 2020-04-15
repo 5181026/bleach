@@ -13,29 +13,29 @@ if (window.name != "reload"){
  function notificationPrint(doc){
     
     // 表示するタグを作成しクラスと文字列をつける
-    let tr =  document.createElement("tr");
+    var tr =  document.createElement("tr");
     tr.setAttribute("data-id" , doc.id);
 
-    let userNameTd = document.createElement("td");
-    let notificationTd = document.createElement("td");
+    var userNameTd = document.createElement("td");
+    var notificationTd = document.createElement("td");
 
-    let btnTd = document.createElement("td");
-    let div = document.createElement("div");
+    var btnTd = document.createElement("td");
+    var div = document.createElement("div");
 
-    let approvalBtn = document.createElement("button");
+    var approvalBtn = document.createElement("button");
     approvalBtn.type = "button";
     approvalBtn.classList.add("btn" , "btn-primary" , "btn-sm" , "mr-3");
     approvalBtn.textContent = "承認"
 
-    let rejectionBtn = document.createElement("button");
+    var rejectionBtn = document.createElement("button");
     rejectionBtn.type = "button";
     rejectionBtn.classList.add("btn" , "btn-secondary" , "btn-sm" , "mr-3");
     rejectionBtn.textContent = "拒否"
-    rejectionBtn.onclick = function() { deleteNotification(doc.id); }
+    rejectionBtn.onclick = function() { devareNotification(doc.id); }
 
     getUserName(doc.data().postuserid , userNameTd)
 
-    let notificationId = doc.data().notificationid;
+    var notificationId = doc.data().notificationid;
     
     // notification_idごとにテーブルの色を分ける
     switch(String(notificationId).slice(0,1)){         //フレンド申請の通知
@@ -77,12 +77,12 @@ function getUserName(userId , td){
 
 //データベースに変化があったとき処理をする
 db.collection("users").doc(gon.user_doc_id).collection("notification").orderBy("date").onSnapshot(snapshot => {
-    let changes = snapshot.docChanges();
+    var changes = snapshot.docChanges();
     changes.forEach(change => {
         if(change.type == "added"){
             notificationPrint(change.doc)
         }else if(change.type == "removed"){ 
-            let tr = table.querySelector("[data-id=" + change.doc.id + "]");
+            var tr = table.querySelector("[data-id=" + change.doc.id + "]");
             table.removeChild(tr);
         }
     });
@@ -116,13 +116,13 @@ function friendAdd (friend_id , notificationDocId){
         // })
     }
     checkExistisMessageDoc(messageId , friendAddFun)    //messageidが存在しないことを確認しfriendとmessageを登録する
-    deleteNotification(notificationDocId)       //データベースからnotificationのdocumentを削除する
+    devareNotification(notificationDocId)       //データベースからnotificationのdocumentを削除する
 }
 
 function groupAdd(userId , groupId, notificationDocId) {
     // 送ってきた相手のdocumentIDを取得
     db.collection("users").where("userid" , "==" , userId).get().then((snapshot) => {
-        let docId
+        var docId
         snapshot.docs.forEach((doc) => {
             docId = doc.id
         });
@@ -135,7 +135,7 @@ function groupAdd(userId , groupId, notificationDocId) {
 
     // groupのdocumentIdを取得する
     db.collection("groups").where("groupid" , "==" , groupId).get().then((snapshot) => {
-        let docId
+        var docId
         snapshot.docs.forEach((doc) => {
             docId = doc.id
         });
@@ -144,12 +144,12 @@ function groupAdd(userId , groupId, notificationDocId) {
             memberid: userId
         });
     });
-    deleteNotification(notificationDocId)
+    devareNotification(notificationDocId)
 }
 
 //データベースからnotificationのdocumentを削除する関数
-function deleteNotification(docId){
-    db.collection("users").doc(gon.user_doc_id).collection("notification").doc(docId).delete();
+function devareNotification(docId){
+    db.collection("users").doc(gon.user_doc_id).collection("notification").doc(docId).devare();
 }
 
 //messageidを自動生成する
