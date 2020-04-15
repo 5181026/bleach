@@ -13,13 +13,13 @@ var btn = document.getElementById("form-btn");
 
 // テスト用チャットの追加用関数
 function chatsPrint(doc){
-    let chats = document.querySelector("#chat-view");
+    var chats = document.querySelector("#chat-view");
 
-    let messageDiv = document.createElement("div");
+    var messageDiv = document.createElement("div");
     messageDiv.classList.add("d-flex" , "mt-5");
 
-    let messageImageDiv = document.createElement("div");
-    let messageTextDiv = document.createElement("div");
+    var messageImageDiv = document.createElement("div");
+    var messageTextDiv = document.createElement("div");
     // 自分が投降したメッセージと相手のメッセージのスタイルを分ける        
     if (doc.data().postid != gon.user_id){
         messageDiv.classList.add("d-flex" , "mt-5");
@@ -30,7 +30,7 @@ function chatsPrint(doc){
         messageTextDiv.classList.add("align-self-center" , "my-chat-format");
     };
     //画像の処理を書く
-    let messageImage = document.createElement("img");
+    var messageImage = document.createElement("img");
     messageImage.src = "https://picsum.photos/200/300";
     messageImage.classList.add("chat-image");
     
@@ -67,7 +67,7 @@ btn.addEventListener("click" , (e) =>{
 // 始めにfirestoreからデータをもらいchatsPrintにデータを渡す
 // そのあとリアルタイムでfirestoreに変化があれば更新する
 db.collection("message").doc(gon.doc_id).collection("content").orderBy("date").onSnapshot(snapshot => {
-    let changes = snapshot.docChanges();
+    var changes = snapshot.docChanges();
     changes.forEach(change => {
         if(change.type == "added"){
             chatsPrint(change.doc);
