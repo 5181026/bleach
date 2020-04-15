@@ -20,29 +20,16 @@ class MessageRepository
 
     # グループのmessage_idを取得する
     def get_group_messages_id(group_id)
-        message_id = Constants::EMPTY
-
         query = group_col().where(FireConst::FIRE_DOC_GROUP_ID , Constants::EQUAL , group_id)
+        message_id = get_data_format(query)
 
-        query.get do |m|
-            message_id = m.data[:messageid]
-        end
-
-        return message_id
+        return message_id[:messageid]
     end
 
     #messageのdocidを取得
     def get_messages_doc_id(message_id)
-        doc_id = Constants::EMPTY
-
         query = message_col().where(FireConst::FIRE_DOC_MESSAGE_ID , Constants::EQUAL , message_id)
-
-        # message_idが一致したコレクションのドキュメントIDを取得する
-        query.get do |m|
-            doc_id = m.document_id
-        end
-
-        query = message_col.doc(doc_id).col(FireConst::FIRE_DOC_MESSAGE_CONTENT)
+        doc_id = get_doc_id_format(query)
 
         return doc_id
     end

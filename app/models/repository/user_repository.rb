@@ -10,61 +10,41 @@ class UserRepository
     def get_all_user
         users = []
         query = user_col()
-        query.get do |u|
-            users << u.data
-        end
+        users = get_data_format(query)
 
         return users
     end
 
-    #認証したユーザをハッシュで返す
+    #認証したユーザを返す
     #ユーザのdocidを返す
     def get_auth_user(user_id , user_pass)
         users = {}
         doc_id = Constants::EMPTY
-        query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
-            .where(FireConst::FIRE_DOC_USER_PASS , Constants::EQUAL , user_pass)
+        compare_doc = [FireConst::FIRE_DOC_USER_ID , FireConst::FIRE_DOC_USER_PASS]
+        compare_value = [user_id , user_pass]
+        query = multiple_where_format(user_col , compare_doc , Constants::EQUAL , compare_value)
 
         query.get do |u|
             users = u.data
             doc_id = u.document_id
         end
-
         return users , doc_id
     end
 
-    #ユーザ名が一致したものをハッシュで返す
+    #ユーザ名が一致したものを返す
     def get_find_user_name(user_name)
-        users = {}
-        query = user_col().where(FireConst::FIRE_DOC_USER_NAME , Constants::EQUAL , user_name)
-
-        query.get do |u|
-            users = u.data
-        end
+        users = Constants::EMPTY
+        query = user_col.where(FireConst::FIRE_DOC_USER_NAME , Constants::EQUAL , user_name)
+        users = get_data_format(query)
 
         return users
     end
-    
-    # ユーザの全てのフレンドを配列で返す
-    # def get_all_friends(doc_id)
-    #     friends = []
-    #     query = user_col().doc(doc_id).col(FireConst::FIRE_COL_FIRENDS)
-        
-    #     query.get do |f|
-    #         friends << f.data
-    #     end
-    #     return friends
-    # end
 
     # IDが一致したユーザのフレンドを取得
     def get_id_find_friend(doc_id , friend_id)
-        friends = {}
         query = user_col().doc(doc_id).col(FireConst::FIRE_COL_FIRENDS)
             .where(FireConst::FIRE_DOC_USER_FRIEND_ID , Constants::EQUAL , friend_id)
-
-        query.get do |f|
-            friends = f.data
-        end
+        friends = get_data_format(query)
 
         return friends
     end
@@ -74,35 +54,17 @@ class UserRepository
         friends = {}
         query = user_col().doc(doc_id).col(FireConst::FIRE_COL_FIRENDS)
             .where(FireConst::FIRE_DOC_USER_FRIEND_NAME , Constants::EQUAL , friend_name)
-        
-        query.get do |f|
-            friends = f.data
-        end
+        friends = get_data_format(query)
 
         return friends
     end
-
-    # ユーザのグループを全て取得する
-    # def get_all_mygroup(doc_id)
-    #     mygroups = []
-    #     query = user_col().doc(doc_id).col(FireConst::FIRE_COL_MYGROUP)
-        
-    #     query.get do |g|
-    #         mygroups << g.data
-    #     end
-
-    #     return mygroups
-    # end
 
     # IDで一致したグループを取得
     def get_find_mygroup(doc_id , group_id)
         mygroups = {}
         query = user_col().doc(doc_id).col(FireConst::FIRE_COL_MYGROUP)
             .where(FireConst::FIRE_DOC_GROUP_ID , Constants::EQUAL , group_id)
-
-        query.get do |g|
-            mygroups = g.data
-        end
+        mygroups = get_data_format(query)
 
         return mygroups
     end
@@ -133,12 +95,9 @@ class UserRepository
         }
 
         query = user_col().where(FireConst::FIRE_DOC_USER_ID , Constants::EQUAL , user_id)
+        doc_id = get_doc_id_format(query)
 
-        query.get do |u|
-            doc_id = u.document_id
-        end
-
-        query = user_sub_col(doc_id , FireConst::FIRE_COL_NOTIFICATION)
+        query = user_col().doc(doc_id).col(FireConst::FIRE_COL_NOTIFICATION)
 
         added_doc_ref = query.add data
             

@@ -8,7 +8,6 @@ class GroupUseCase
             @@group_repo.get_find_group_id(s[:groupid]) 
         end
         mygroups.delete_if { |i| i == {} }   #空のハッシュを削除する(本来は必要ない)
-        puts mygroups
         return mygroups
     end 
 
