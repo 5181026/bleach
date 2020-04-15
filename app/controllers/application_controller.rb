@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   # end 
 
   # rescue_from FireBase, with: :firebase_not_connection
-  
+  #　firebaseのエラー
   # def firebase_not_connection
   #   puts "接続に失敗しました"
   # end
