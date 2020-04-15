@@ -3,7 +3,7 @@ class UserController < ApplicationController
     #TODO簡単にログインできる（ロジックをしっかり作る）
     # ログインのアクション
     def login
-        @header_title = "ログインページ"
+        @header_title = Constants::USER_LOGIN_TITLE
         if params[:user_id].present?
             user = @@use_case.auth(params[:user_id] , params[:user_pass])
             session[:user] = user
@@ -37,7 +37,6 @@ class UserController < ApplicationController
 
     #プロフィール表示のアクション
     def mypage_view 
-        puts session[:user][Constants::USER_MAIL]
     end
 
     def click_user_edit_button
@@ -47,5 +46,11 @@ class UserController < ApplicationController
         
         @@use_case.user_parameter_edit(session[:user])
         redirect_to action: :mypage_view
+    end
+
+    def logout
+        session[:user].clear
+        session.delete(:user)
+        redirect_to action: :login
     end
 end

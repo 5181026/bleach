@@ -20,7 +20,12 @@
         <%= link_to "タイムライン" , time_line_path , id: "nav-3" %>
         <%= link_to "フレンド" , friend_view_path , id: "nav-4" %>
         <%= link_to "グループ" , group_view_path , id: "nav-5" %>
-        <%= link_to "ログアウト" , "#" , id: "nav-6" %>
+        <%= link_to "ログアウト" , logout_path , id: "nav-6" , data: {
+            confirm: "ログアウトします。よろしいですか？",
+            cancel: "やめる",
+            commit: "ログアウト"
+            } , title: "ログアウト"
+        %>
          
         <!-- ナビの最後の部分（何かサイトの情報を入れたい）  -->
         <div class="nav-footer">サイト名など</div> 
