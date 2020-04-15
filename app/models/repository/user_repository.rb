@@ -109,7 +109,7 @@ class UserRepository
             where(FireConst::FIRE_DOC_NOTIFICATION_POST_ID , Constants::EQUAL , user_id)
 
         query.get do |n|
-            notification  = n.data if n.data[:notificationid][0] == FireConst::NOTIFICATION_FRIEND_REQUEST_ID[0]
+            notification  = n.data if n.data[:notificationid][Constants::ZERO] == FireConst::NOTIFICATION_FRIEND_REQUEST_ID[Constants::ZERO]
         end
 
         return notification

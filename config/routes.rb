@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "/message" , to: "message#chat"
   get "/time_line" , to: "time_line#time_line_view"
   get "/time_line_post" , to: "time_line#time_line_post"
+  get "/logout" , to: "user#logout"
   
 
   post "/" , to: "user#login"

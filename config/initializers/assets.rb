@@ -18,3 +18,5 @@ Rails.application.config.assets.precompile += %w( notification.js )
 Rails.application.config.assets.precompile += %w( requestFriendBtn.js )
 Rails.application.config.assets.precompile += %w( requestGroupBtn.js )
 Rails.application.config.assets.precompile += %w( good.js )
+Rails.application.config.assets.precompile += %w( browserBack.js )
+
