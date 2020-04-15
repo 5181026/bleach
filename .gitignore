@@ -23,5 +23,3 @@
 .byebug_history
 
 config/firestoreKey/
-
-./Gemfile.lock
