@@ -38,8 +38,8 @@ if (window.name != "reload"){
     var notificationId = doc.data().notificationid;
     
     // notification_idごとにテーブルの色を分ける
-    switch(String(notificationId).slice(0,1)){         //フレンド申請の通知
-        case "0":
+    switch(String(notificationId).slice(0,1)){        
+        case "0": //フレンド申請の通知
             tr.classList.add("table-success");
             notificationTd.textContent = "フレンド依頼を受け取りました。"
             approvalBtn.onclick = function () { friendAdd(doc.data().postuserid , doc.id); };
@@ -49,12 +49,12 @@ if (window.name != "reload"){
             getGroup(doc.data().groupid , notificationTd)
             approvalBtn.onclick = function () { groupAdd(doc.data().postuserid , doc.data().groupid , doc.id); }
             break;
-        case "2":                                                //新規メッセージの通知 
-            tr.classList.add("table-warning");
-            notificationTd.textContent = "新規メッセージがあります。"
-            approvalBtn.classList.add("d-none");
-            rejectionBtn.classList.add("d-none");
-            break;
+        // case "2":  //新規メッセージの通知 
+        //     tr.classList.add("table-warning");
+        //     notificationTd.textContent = "新規メッセージがあります。"
+        //     approvalBtn.classList.add("d-none");
+        //     rejectionBtn.classList.add("d-none");
+        //     break;
     }
 
     tr.appendChild(userNameTd);
@@ -110,10 +110,6 @@ function friendAdd (friend_id , notificationDocId){
                 messageid: messageId
             });
         });
-        // //messageを追加する
-        // db.collection("message").add({
-        //     messageid: messageId
-        // })
     }
     checkExistisMessageDoc(messageId , friendAddFun)    //messageidが存在しないことを確認しfriendとmessageを登録する
     devareNotification(notificationDocId)       //データベースからnotificationのdocumentを削除する

@@ -13,10 +13,13 @@ class FriendController < ApplicationController
             @friends = @@use_case.id_find_user(params[:friend_id])
         elsif params[:friend_name].present?
             @friends = @@use_case.name_find_user(params[:friend_name])
+        else
+            @friends = @@use_case.get_friends(session[:user][Constants::USER_DOC_ID])
         end
 
         if @friends == [] 
-            @friends = @@use_case.get_friends(session[:user][Constants::USER_DOC_ID])
+            flash[:alert] = Constants::SEARCH_NOT_FIND
+            redirect_to action: :friend_search
         end
     end
 

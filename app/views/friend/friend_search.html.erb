@@ -1,5 +1,7 @@
 <% provide( :use_nav , "true") %> 
-
+<% if flash[:alert].present? %>
+    <div class="text-center alert alert-warning p-0"><%= flash[:alert] %></div>
+<% end %>
 <!-- グループIDで検索するためのフォーム　-->
 <div class="offset-lg-2 offset-1 col-lg-8 col-11 mt-4 border border-success rounded-pill friend-search">
     <div class="h4 text-center">ユーザIDで検索</div>
