@@ -21,10 +21,13 @@ class GroupController < ApplicationController
             @groups = @@use_case.get_find_id_group(params[:group_id])
         elsif params[:group_name].present?
             @groups = @@use_case.get_find_name_group(params[:group_name])
+        else
+            @groups = @@use_case.get_all_mygroup(session[:user][Constants::USER_DOC_ID])
         end
 
         if @groups == []
-            @groups = @@use_case.get_all_mygroup(session[:user][Constants::USER_DOC_ID])
+            flash[:alert] = Constants::SEARCH_NOT_FIND
+            redirect_to action: :group_search
         end
     end
 

@@ -12,6 +12,8 @@ module Constants
     USER_DOC_ID = "doc_id"
     USER_MAIL = "user_mail"
     DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
+    
+    #ページごとのタイトルの定数
     USER_LOGIN_TITLE = "ログインページ"
     USER_ADD_TITLE = "アカウント登録"
     EDIT_TITLE = "編集ページ"
@@ -19,5 +21,7 @@ module Constants
     NOT_ENTERED = "未入力"
     MESSAGE_ID_FIRST_CHAR_G = "G"
     
+    # アラートメッセージの定数
+    SEARCH_NOT_FIND = "検索されたIDもしくは名前が間違っています"
     ZERO = 0
 end
