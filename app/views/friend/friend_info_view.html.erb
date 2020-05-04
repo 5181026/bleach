@@ -4,7 +4,7 @@
 <div class="text-center m-5 position-fixed">
     <div class="d-flex col-12 m-5">
         <div>
-            <%= image_tag "https://picsum.photos/200/300" , class: "info-image mr-5 mb-3 rounded" , :size => '200x400' %>
+            <%= image_tag "https://picsum.photos/200/300" , class: "info-image mr-5 mb-3 rounded" , size: '200x400' , id: "@friend[:userid]" , name: "user-image" %>
             <%= form_with url: friend_info_view_path(user_id: @friend[:userid]) , id: "friend-form" do |form| %>
                 <%= form.submit "フレンドになる" , class: "btn btn-info btn-lg mr-4" , id: "friend-btn" %>
             <% end %>
@@ -38,3 +38,4 @@
     </div>
 </div>
 <%= javascript_include_tag 'requestFriendBtn.js' %>
+<%= javascript_include_tag 'printImage.js' %>

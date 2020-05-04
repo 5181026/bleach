@@ -5,9 +5,9 @@
         <!-- サイドのメニューのユーザ情報を表示する -->
         <div class="nav-header">
             <div class="d-flex">
-                <div><%= image_tag "https://picsum.photos/200/300" , class: "nav-image" %></div> <!-- 画像を表示する（ruby）-->
+                <div id="img-div" data-userid='<%= session[:user]["user_id"] %>'><%= image_tag "" , class: "nav-image" , id: "image"%></div> <!-- 画像を表示する-->
                 <div class="d-flex flex-column align-self-center"> <!-- 名前とIDを縦に表示する -->
-                    <div><b><%= session[:user]["user_name"] %></b></div>                   <!-- 名前つける(ruby) --> 
+                    <div><b><%= session[:user]["user_name"] %></b></div>                   <!-- 名前つける--> 
                     <div class="text-center">ID: <%= session[:user]["user_id"] %></div>
                 </div>
             </div>
@@ -31,3 +31,6 @@
         <div class="nav-footer">サイト名など</div> 
     </nav>
 </div>
+
+<%= javascript_include_tag "printImage.js" %>
+<%= javascript_include_tag "nav.js" %>

@@ -1,5 +1,4 @@
 # Logfile created on 2020-04-11 13:49:35 +0900 by logger.rb/66358
 E, [2020-04-11T13:49:35.835664 #3888] ERROR -- : FireBaseError接続に失敗しました。
 E, [2020-04-15T11:53:39.467652 #26168] ERROR -- : FireBaseError接続に失敗しました。
-E, [2020-04-16T16:52:17.560730 #10428] ERROR -- : FireBaseError接続に失敗しました。
-E, [2020-04-21T17:53:01.754678 #3020] ERROR -- : FireBaseError接続に失敗しました。
+E, [2020-04-30T13:42:57.360840 #10552] ERROR -- : FireBaseError接続に失敗しました。

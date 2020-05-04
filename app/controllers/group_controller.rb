@@ -56,6 +56,7 @@ class GroupController < ApplicationController
         @header_title = Constants::EDIT_TITLE
         @group_name = params[:group_name]
         @group_id = params[:group_id]
+        gon.id = @group_id
     end
 
     def click_group_edit_button

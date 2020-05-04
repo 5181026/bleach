@@ -33,10 +33,12 @@ class UserController < ApplicationController
     # ユーザ編集のアクション
     def user_edit
         @header_title = Constants::EDIT_TITLE
+        gon.id = session[:user][Constants::USER_ID]
     end
 
     #プロフィール表示のアクション
     def mypage_view 
+        gon.user_id = session[:user][Constants::USER_ID]
     end
 
     def click_user_edit_button

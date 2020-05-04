@@ -1,4 +1,6 @@
 <% provide( :use_nav , true) %> 
+
+
 <div class="row">
     <div class ="container text-right mt-3">
         <%= link_to("フレンドを探す" , friend_search_path , class: "btn btn-outline-primary" , type: "button")%>
@@ -8,9 +10,10 @@
         <div class="col-md-6 col-10 text-center mt-5">
             <!-- aタグの代わりにlink_toを使用する（後でユーザごとに別のurlにする）-->
             <%= link_to(friend_info_view_path(friend_id: friend[:userid]), class: "col-md-6 col-10 text-center mt-5") do %>
-                <%= image_tag "https://picsum.photos/200/300" , class: "view-images" %>
+                <%= image_tag "" , class: "view-images" , id: friend[:userid] , name: "user-image"%>
                 <div class="image-name col-12 ml-md-2"><%= friend[:name] %></div>
             <% end %>
-        </div> 
+        </div>
     <% end %>
 </div>
+<% javascript_include_tag "printImage.js" %>

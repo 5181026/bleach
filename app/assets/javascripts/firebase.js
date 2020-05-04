@@ -13,3 +13,4 @@ if (!firebase.apps.length) {
 }
 
 var db = firebase.firestore();
+var storage = firebase.storage().ref();
