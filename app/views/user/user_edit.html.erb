@@ -2,7 +2,7 @@
 <%= render ("layouts/header_title") %>
 <div class="row">
     <div class="col-8 offset-2">
-        <%= form_with url: user_edit_path, local: true , class: "custom-form"  do |form| %>
+        <%= form_with url: user_edit_path, local: true , class: "custom-form" , html: { name: "edit-form" } do |form| %>
             <div class="d-flex text-right mt-5 form-label-text">
                 <div class="col-4 align-self-center">名前</div>
                 <div class="col-7"><%= form.text_field :user_name , class: "form-control" , size: 50 , value: session[:user]["user_name"]  %></div>
@@ -17,11 +17,21 @@
                 <div class="col-4 align-self-center align-item-end">年齢</div>
                 <div class="col-7"><%= form.number_field :user_age , class: "form-control" ,  value: replace_to_str(session[:user]["user_age"]) , min: 0, max: 130 %></div>
             </div>
-            
+            <div class="d-flex text-right mt-5 form-label-text">
+                <div class="col-4 align-self-center align-item-end">画像選択</div>
+                <div><%= form.label :image , for: "file-input" , class: "far fa-file-image fa-2x" do %><span class="btn btn-secondary ml-3">クリック</span><% end %></div>
+                <div class="col-7"><%= form.file_field :image , id: "file-input" , style: "display: none;" %></div>
+            </div>
+            <!-- <div class="d-none"><%= form.text_field :image_url , value: "image/#{session[:user]["userid"]}/userimage"%></div> -->
+            <div class="d-flex text-right mt-5 form-label-text">
+                <div class="col-4 align-self-center align-item-end">画像</div>
+                <div id="edit-image"></div>
+            </div>
             <div class="offset-4 mt-5">
-                <%= form.submit "登　録" , class: "btn btn-success btn-lg pr-5 pl-5 mr-5"%>
+                <%= form.submit "登　録" , class: "btn btn-success btn-lg pr-5 pl-5 mr-5" , id: "submit-btn" %>
                 <%= link_to "キャンセル" , 'javascript:history.back()' , class: "btn btn-secondary btn-lg pr-4 pl-4"%>
             </div>
         <% end %>
     </div>
 </div>
+<%= javascript_include_tag "imageUpload.js" %>

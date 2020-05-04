@@ -10,16 +10,18 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
     <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-storage.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- rubyからjavascriptに変数を渡すためにgonを追加 -->
     <%= include_gon %>
     </head>
   <body>
-    <%= javascript_include_tag 'firestore.js' %>
+    <%= javascript_include_tag 'firebase.js' %>
     <div class="container-fluid d-flex" id="main">
       <%= render 'layouts/nav' if yield(:use_nav) == "true" %>
       <div class="container-fluid p-0" id="main-content"><%= yield %><div>

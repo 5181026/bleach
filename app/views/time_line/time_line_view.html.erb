@@ -3,7 +3,7 @@
 <% @time_lines.each do |time_line| %>
   <div class="card col-8 offset-md-3 offset-lg-2 offset-4 h6">
     <div class="card-header">
-      <%= image_tag "https://picsum.photos/200/300" , class: "time-line-image" %>
+      <%= image_tag "https://picsum.photos/200/300" , class: "time-line-image" , name: "user-image" , id: time_line[:postuserid]%>
       <%= time_line[:postuserid] %>
       <span class="time-line-date"><%= time_line[:date].strftime("%Y/%m/%d %H:%M") %></span>
     </div>
@@ -25,3 +25,5 @@
   </div>
 <% end %>
 <%= javascript_include_tag 'good.js' %>
+<%= javascript_include_tag 'requestGroupBtn.js' %>
+<% javascript_include_tag "printImage.js" %>

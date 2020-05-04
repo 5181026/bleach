@@ -4,7 +4,7 @@
 <div class="text-center m-5 position-fixed">
     <div class="d-flex col-12 m-5">
         <div>    
-            <%= image_tag "https://picsum.photos/200/300" , class: "mr-5 mb-3 rounded info-image" , :size => '200x400'%>
+            <%= image_tag "" , class: "mr-5 mb-3 rounded info-image" , size: '200x400' , name: "user-image" , id: @group[:groupid]%>
             <%= form_with url: group_info_view_path(create_user_id: @group[:createuserid] , group_id: @group[:groupid]) , id: "group-form" do |form| %>
                 <%= form.submit "グループに入る" , class: "btn btn-info btn-lg mr-4" , id: "group-btn" %>
             <% end %>
@@ -43,3 +43,4 @@
     </div>
 </div>
 <%= javascript_include_tag 'requestGroupBtn.js' %>
+<% javascript_include_tag "printImage.js" %>

@@ -12,11 +12,15 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
-Rails.application.config.assets.precompile += %w( firestore.js )
+Rails.application.config.assets.precompile += %w( firebase.js )
 Rails.application.config.assets.precompile += %w( realTimesChat.js )
 Rails.application.config.assets.precompile += %w( notification.js )
 Rails.application.config.assets.precompile += %w( requestFriendBtn.js )
 Rails.application.config.assets.precompile += %w( requestGroupBtn.js )
 Rails.application.config.assets.precompile += %w( good.js )
 Rails.application.config.assets.precompile += %w( browserBack.js )
+Rails.application.config.assets.precompile += %w( imageUpload.js )
+Rails.application.config.assets.precompile += %w( printImage.js )
+Rails.application.config.assets.precompile += %w( nav.js )
+
 

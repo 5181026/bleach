@@ -31,7 +31,11 @@ body {
     vertical-align: text-bottom;
 }
 
-.material-icons:hover{
+.far {
+    vertical-align: text-top;
+}
+
+.material-icons , .far:hover{
     cursor: pointer;
 }
 

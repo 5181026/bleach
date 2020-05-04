@@ -16,6 +16,8 @@ class FriendController < ApplicationController
         else
             @friends = @@use_case.get_friends(session[:user][Constants::USER_DOC_ID])
         end
+        
+        gon.friends = @friends
 
         if @friends == [] 
             flash[:alert] = Constants::SEARCH_NOT_FIND
