@@ -1,6 +1,6 @@
 class UserController < ApplicationController
     @@use_case = UserUseCase.new
-    #TODO簡単にログインできる（ロジックをしっかり作る）
+
     # ログインのアクション
     def login
         @header_title = Constants::USER_LOGIN_TITLE
@@ -18,9 +18,15 @@ class UserController < ApplicationController
         user_id = params[:user_id]
         user_pass = params[:user_pass]
         re_pass = params[:re_pass]
-        if user_name.present?
-            @@use_case.create_account(user_name , user_id , user_pass , re_pass)
-            redirect_to action: :login
+        if @@use_case.create_parameter_confirm?(user_name , user_id , user_pass , re_pass)
+            if @@use_case.id_find_user(user_id).present?
+                flash[:alert_add_user] = Constants::W_004  
+            else
+                @@use_case.create_account(user_name , user_id , user_pass , re_pass)
+                redirect_to action: :login
+            end
+        elsif params[:commit].present?
+            flash[:alert_add_user] = Constants::W_003
         end
         
     end

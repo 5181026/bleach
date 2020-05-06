@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "/time_line" , to: "time_line#time_line_view"
   get "/time_line_post" , to: "time_line#time_line_post"
   get "/logout" , to: "user#logout"
+  get "*path" => "application#authentication_error_handler"
   
 
   post "/" , to: "user#login"

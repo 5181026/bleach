@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
   # def firebase_not_connection
   #   puts "接続に失敗しました"
   # end
+rescue_from ActiveRecord::RecordNotFound, with: :authentication_error_handler
+  def authentication_error_handler
+    flash[:alert] = Constants::W_002
+    redirect_to action: :login
+  end
 
   protected
   #ログインしていないユーザをloginに戻す

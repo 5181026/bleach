@@ -2,7 +2,6 @@
 
 # 途中
 module FirebaseFormat
-    include Timestamp
     def user_col
         @firestore.col(FireConst::FIRE_COL_USERS)
     end

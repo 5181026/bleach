@@ -2,6 +2,9 @@
 <%= render ("layouts/header_title") %>
 <div class="row mt-5">
     <div class="col-8 offset-2 mt-5">
+        <% if flash[:alert].present? %>
+            <div class="text-center alert alert-danger p-2 m-0"><%= flash[:alert] %></div>
+        <% end %>
         <%= form_with url: root_path , local: true , class: "custom-form" do |form| %>
             <div class="d-flex text-right mt-5 form-label-text">
                 <div class="col-4 align-self-center align-item-end">ID</div>
