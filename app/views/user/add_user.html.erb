@@ -1,6 +1,9 @@
 <!-- ユーザを登録するためのHTML -->
 <% provide(:use_nav , false) %>
 <%= render ("layouts/header_title") %>
+    <% if flash[:alert_add_user].present? %>
+        <div class="text-center alert alert-danger p-2 m-0"><%= flash[:alert_add_user] %></div>
+    <% end %>
 <div class="row">
     <div class="col-8 offset-2">
         <%= form_with url: add_user_path , local: true , class: "custom-form" do |form| %>
@@ -25,7 +28,7 @@
             </div>
             <div class="offset-4 mt-5">
                 <%= form.submit "登　録" , class: "btn btn-success btn-lg pr-5 pl-5 mr-5"%>
-                <%= link_to "キャンセル" , 'javascript:history.back()' , class: "btn btn-secondary btn-lg pr-4 pl-4"%>
+                <%= link_to "キャンセル" , root_path , class: "btn btn-secondary btn-lg pr-4 pl-4"%>
             </div>
         <% end %>
     </div>

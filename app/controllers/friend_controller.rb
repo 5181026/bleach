@@ -20,7 +20,7 @@ class FriendController < ApplicationController
         gon.friends = @friends
 
         if @friends == [] 
-            flash[:alert] = Constants::SEARCH_NOT_FIND
+            flash[:alert] = Constants::W_001
             redirect_to action: :friend_search
         end
     end

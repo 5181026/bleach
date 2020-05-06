@@ -26,7 +26,7 @@ class GroupController < ApplicationController
         end
 
         if @groups == []
-            flash[:alert] = Constants::SEARCH_NOT_FIND
+            flash[:alert] = Constants::W_001
             redirect_to action: :group_search
         end
     end
