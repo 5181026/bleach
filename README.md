@@ -21,7 +21,7 @@ BleachはサーバレスなSNSアプリケーションです。
 フレンド申請、グループに入りたいユーザから通知が届き、それらを承認できます。
 
 # 構築
-言語： Ruby 2.6.5
+言語： Ruby 2.6.5 , HTML , CSS ,JavaScript 
 
 フレームワーク： Ruby on Rails 5.1.7 , Bootstrap4
 
