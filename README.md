@@ -22,7 +22,11 @@ BleachはサーバレスなSNSアプリケーションです。
 
 # 構築
 言語： Ruby 2.6.5
+
 フレームワーク： Ruby on Rails 5.1.7 , Bootstrap4
+
 データベース： CloudFiresore
+
 クラウドストレージ: Cloud Storage for Firebase
+
 サーバ: Heroku
