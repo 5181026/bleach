@@ -19,10 +19,11 @@ class UserController < ApplicationController
         user_pass = params[:user_pass]
         re_pass = params[:re_pass]
         if @@use_case.create_parameter_confirm?(user_name , user_id , user_pass , re_pass)
-            if @@use_case.id_find_user(user_id).present?
+            if @@use_case.id_find_user(user_id)[Constants::ZERO].present?
                 flash[:alert_add_user] = Constants::W_004  
             else
                 @@use_case.create_account(user_name , user_id , user_pass , re_pass)
+                flash[:alert_create_user] = Constants::I_001
                 redirect_to action: :login
             end
         elsif params[:commit].present?

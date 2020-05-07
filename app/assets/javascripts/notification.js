@@ -145,7 +145,7 @@ function groupAdd(userId , groupId, notificationDocId) {
 
 //データベースからnotificationのdocumentを削除する関数
 function devareNotification(docId){
-    db.collection("users").doc(gon.user_doc_id).collection("notification").doc(docId).devare();
+    db.collection("users").doc(gon.user_doc_id).collection("notification").doc(docId).delete();
 }
 
 //messageidを自動生成する
