@@ -16,10 +16,13 @@ function chatsPrint(doc){
     var chats = document.querySelector("#chat-view");
 
     var messageDiv = document.createElement("div");
-    messageDiv.classList.add("d-flex" , "mt-5");
-
+    var nameDiv = document.createElement("div");
     var messageImageDiv = document.createElement("div");
     var messageTextDiv = document.createElement("div");
+
+    getName(doc.data().postid , nameDiv);
+    nameDiv.classList.add("ml-2");
+    messageDiv.classList.add("d-flex" , "mt-5");
     // 自分が投降したメッセージと相手のメッセージのスタイルを分ける        
     if (doc.data().postid != gon.user_id){
         messageDiv.classList.add("d-flex" , "mt-5");
@@ -31,23 +34,28 @@ function chatsPrint(doc){
     };
     //画像の処理を書く
     var messageImage = document.createElement("img");
-    messageImage.src = "https://picsum.photos/200/300";
+    // messageImage.src = "https://picsum.photos/200/300";
+    // messageImage.setAttribute = ("data-userid" , doc.data().postid);
+    // messageImage.name = "user-image";
     messageImage.classList.add("chat-image");
     
     // firestoreから送られたテキストをHTML要素にセットする
     messageTextDiv.textContent = doc.data().text;
 
     // 表示する準備をする
+    messageImageDiv.appendChild(nameDiv);
     messageImageDiv.appendChild(messageImage);
     messageDiv.appendChild(messageImageDiv);
     messageDiv.appendChild(messageTextDiv);
 
     // 表示する
     chats.appendChild(messageDiv);
+    scrollBottom();
+    //printImage.jsから呼び出している。
+    printImage(doc.data().postid , messageImage)
 }
 
-// 送信ボタンが押されたときにfirestoreにチャットデータを保存をする。(doc_idは本人のだけ使うからrailsから送る)
-//バグあり
+// 送信ボタンが押されたときにfirestoreにチャットデータを保存をする。
 btn.addEventListener("click" , (e) =>{
     e.preventDefault();
     db.collection("message").doc(gon.doc_id).collection("content").add({
@@ -74,4 +82,23 @@ db.collection("message").doc(gon.doc_id).collection("content").orderBy("date").o
         }
     });
 });
+
+function getName(userId , element){
+    console.log(userId)
+    console.log(element)
+    db.collection("users").where("userid" , "==" , userId).get().then((snapshot) => {
+        var user
+        snapshot.docs.forEach((doc) => {
+            user = doc.data().name
+        })
+        element.textContent = user
+    })
+}
+
+
+function scrollBottom(){
+    var elementHtml = document.documentElement;
+    var bottom = elementHtml.scrollHeight - elementHtml.clientHeight;
+    window.scroll(0 , bottom)
+}
 

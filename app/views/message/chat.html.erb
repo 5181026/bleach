@@ -13,7 +13,6 @@
         <textarea name="msgText" class="form-control col-8 pr-5" id="exampleFormControlTextarea1" rows="3" cols="80" placeholder="ここにメッセージを入力してください"></textarea>
         <div class="align-self-center ml-5 col-3"><button type="button" class="btn btn-primary btn-lg pr-5 pl-5" id="form-btn">送信する</button></div>
     </form>
-
 </div>
 
 <!-- javasriptをこのページだけ反映した
@@ -26,5 +25,7 @@
         Rails.application.config.assets.precompile += %w( FileName.js )
 -->
 
+<%= javascript_include_tag "printImage.js" %>
 <%= javascript_include_tag 'realTimesChat.js' %>
-    
+
+
