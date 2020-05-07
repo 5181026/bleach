@@ -6,7 +6,8 @@
 # 説明
 アプリのURLです。
 #### アプリURL：https://railssnsapp.herokuapp.com/
-#### Microsoft Edgeには対応していません。
+#### ※スマートフォンには対応していません
+#### ※Microsoft Edgeには対応していません。
 作成済みアカウント  
 ID: test001  
 pass: test
