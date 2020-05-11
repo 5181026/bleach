@@ -25,7 +25,7 @@ class GroupController < ApplicationController
             @groups = @@use_case.get_all_mygroup(session[:user][Constants::USER_DOC_ID])
         end
 
-        if @groups == []
+        if @groups == [] && params[:commit].present?
             flash[:alert] = Constants::W_001
             redirect_to action: :group_search
         end
