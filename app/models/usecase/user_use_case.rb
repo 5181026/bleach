@@ -39,7 +39,7 @@ class UserUseCase
     def id_find_user(user_id)
         users = []
         users << @@user_repo.get_find_user_id(user_id) 
-        # users.delete_if { |i| i == {} || i == Constants::EMPTY }   #空のハッシュを削除する(本来は必要ない)
+        users.delete_if { |i| i == {} || i == Constants::EMPTY }   #空のハッシュを削除する
     end
 
     def name_find_user(friend_name)
